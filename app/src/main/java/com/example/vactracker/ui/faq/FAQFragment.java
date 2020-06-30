@@ -1,4 +1,4 @@
-package com.example.vactracker.ui.development;
+package com.example.vactracker.ui.faq;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,24 +14,24 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.vactracker.R;
 
-public class DevelopmentFragment extends Fragment {
+public class FAQFragment extends Fragment {
 
-    TextView d;
+    TextView f;
 
-    DevelopmentViewModel developmentViewModel;
+   FAQViewModel faqViewModel;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        developmentViewModel = ViewModelProviders.of(this).get(DevelopmentViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_development, container,false);
+        faqViewModel = ViewModelProviders.of(this).get(FAQViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_faq, container,false);
 
-        d = root.findViewById(R.id.text_development);
+        f = root.findViewById(R.id.text_faq);
 
-        developmentViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        faqViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                d.setText(s);
+                f.setText(s);
             }
         });
 

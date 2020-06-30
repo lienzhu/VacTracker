@@ -30,20 +30,27 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.vactracker.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.vactracker.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-
-    <fragment
         android:id="@+id/nav_development"
         android:name="com.example.vactracker.ui.development.DevelopmentFragment"
         android:label="@string/menu_development"
         tools:layout="@layout/fragment_development" />
+
+    <fragment
+        android:id="@+id/nav_map"
+        android:name="com.example.vactracker.ui.map.MapFragment"
+        android:label="Map"
+        tools:layout="@layout/fragment_map" />
+
+    <fragment
+        android:id="@+id/nav_support"
+        android:name="com.example.vactracker.ui.support.SupportFragment"
+        android:label="Support"
+        tools:layout="@layout/fragment_support" />
+
+    <fragment
+        android:id="@+id/nav_faq"
+        android:name="com.example.vactracker.ui.faq.FAQFragment"
+        android:label="FAQ"
+        tools:layout="@layout/fragment_faq" />
+
 </navigation>

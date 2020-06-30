@@ -1,4 +1,4 @@
-package com.example.vactracker.ui.slideshow;
+package com.example.vactracker.ui.support;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.vactracker.R;
 
-public class SlideshowFragment extends Fragment {
+public class SupportFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+    private SupportViewModel supportViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                ViewModelProviders.of(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+        supportViewModel =
+                ViewModelProviders.of(this).get(SupportViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_support, container, false);
         final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        supportViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
