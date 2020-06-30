@@ -23,7 +23,7 @@ public class SupportFragment extends Fragment {
         supportViewModel =
                 ViewModelProviders.of(this).get(SupportViewModel.class);
         View root = inflater.inflate(R.layout.fragment_support, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
+        final TextView textView = root.findViewById(R.id.text_support);
         supportViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

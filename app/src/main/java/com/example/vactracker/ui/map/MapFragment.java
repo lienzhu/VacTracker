@@ -16,12 +16,12 @@ import com.example.vactracker.R;
 
 public class MapFragment extends Fragment {
 
-    private mapViewModel mapViewModel;
+    private MapViewModel mapViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         mapViewModel =
-                ViewModelProviders.of(this).get(mapViewModel.class);
+                ViewModelProviders.of(this).get(MapViewModel.class);
         View root = inflater.inflate(R.layout.fragment_map, container, false);
         final TextView textView = root.findViewById(R.id.text_map);
         mapViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
