@@ -1,9 +1,12 @@
 package com.example.vactracker;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.vactracker.ui.DataService;
+import com.example.vactracker.ui.data.Vaccine;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -16,8 +19,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
+
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "Main Activity";
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -45,6 +58,56 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        //API Methods
+        //Retrofit converts the HTTP API into a Java interface
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.c3.ai")
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        Log.d(TAG, "onBuild: SUCCESS");
+
+        String text = "{ \"spec\": {\"filter\": \"therapyType == 'Vaccine'\"} }";
+
+//        Map<String, Object> jsonParams = new ArrayMap<>();
+//        //put something inside the map, could be null
+//        jsonParams.put("filter", "therapyType == 'Vaccine'");
+
+        //Call from the created QuoteService class can make a HTTP request to the remote Chuck Norris Server.
+        DataService service = retrofit.create(DataService.class);
+//        Call<Vaccine> quoteCall = service.sendData("jsonParams",params);
+
+        RequestBody body = RequestBody.create(MediaType.parse("text/plain"), text);
+        Call<Vaccine> response = service.sendData(body);
+
+        //Call<Vaccine> = response.postJson(new Data("filter", "therapyType=='Vaccine'"));
+
+        //Implementing enqueue method to resolve NetworkOnMainThreadException that would normally occur from using execute().
+        response.enqueue(new Callback<Vaccine>() {
+            @Override
+            public void onResponse(Call<Vaccine> call, Response<Vaccine> response) {
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: SUCCESS");
+
+                    Vaccine quotes = response.body();
+                    //tvQuote.setText(quotes.getValue());
+                    System.out.println(quotes.getObjs().get(0).getDescription());
+                    System.out.print(response.body().toString());
+
+                } else {
+                    Log.d(TAG, "onResponse: ERROR IS " + response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Vaccine> call, Throwable t) {
+                Log.d(TAG, "onFailure: ON FAILURE IS:" + t.getLocalizedMessage());
+            }
+        });
+
+
+
     }
 
     @Override
