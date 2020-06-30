@@ -1,4 +1,4 @@
-package com.example.vactracker.ui.gallery;
+package com.example.vactracker.ui.support;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.vactracker.R;
 
-public class GalleryFragment extends Fragment {
+public class SupportFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private SupportViewModel supportViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        supportViewModel =
+                ViewModelProviders.of(this).get(SupportViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_support, container, false);
+        final TextView textView = root.findViewById(R.id.text_support);
+        supportViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
