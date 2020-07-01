@@ -1,4 +1,4 @@
-package com.example.vactracker.ui.map;
+package com.example.vactracker.ui.vaccines;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.vactracker.R;
 
-public class MapFragment extends Fragment {
+public class VaccinesFragment extends Fragment {
 
-    private MapViewModel mapViewModel;
+    private VaccinesViewModel vaccinesViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        mapViewModel =
-                ViewModelProviders.of(this).get(MapViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_map, container, false);
-        final TextView textView = root.findViewById(R.id.text_map);
-        mapViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        vaccinesViewModel =
+                ViewModelProviders.of(this).get(VaccinesViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_vaccines, container, false);
+        final TextView textView = root.findViewById(R.id.text_vaccines);
+        vaccinesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
