@@ -70,18 +70,12 @@ public class MainActivity extends AppCompatActivity {
 
         String filter = "{ \"spec\": {\"filter\": \"therapyType == 'Vaccine'\"} }";
 
-//        Map<String, Object> jsonParams = new ArrayMap<>();
-//        //put something inside the map, could be null
-//        jsonParams.put("filter", "therapyType == 'Vaccine'");
-
         //Call from the created DataService class can make a HTTP request to the remote C3.ai server.
         DataService service = retrofit.create(DataService.class);
-//        Call<Vaccine> quoteCall = service.sendData("jsonParams",params);
 
         RequestBody body = RequestBody.create(MediaType.parse("text/plain"), filter);
         Call<Vaccine> response = service.sendData(body);
 
-        //Call<Vaccine> = response.postJson(new Data("filter", "therapyType=='Vaccine'"));
 
         //Implementing enqueue method to resolve NetworkOnMainThreadException that would normally occur from using execute().
         response.enqueue(new Callback<Vaccine>() {
@@ -93,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     Vaccine vaccineInfo = response.body();
                     //tvQuote.setText(quotes.getValue());
                     System.out.println(vaccineInfo.getObjs().get(0).getDescription());
-                    System.out.print(response.body().toString());
+                    System.out.println(response.body().toString());
 
                 } else {
                     Log.d(TAG, "onResponse: ERROR IS " + response.body());
@@ -105,8 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onFailure: ON FAILURE IS:" + t.getLocalizedMessage());
             }
         });
-
-
 
     }
 
