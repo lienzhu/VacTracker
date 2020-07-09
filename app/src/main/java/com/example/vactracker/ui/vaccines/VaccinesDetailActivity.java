@@ -1,0 +1,25 @@
+package com.example.vactracker.ui.vaccines;
+
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.vactracker.R;
+
+public class VaccinesDetailActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.vaccines_detail_activity);
+
+        if (savedInstanceState == null) {
+            Bundle arguments = new Bundle();
+            arguments.putString(VaccinesDetailFragment.ARG_ITEM_ID, getIntent().getStringExtra(VaccinesDetailFragment.ARG_ITEM_ID));
+            VaccinesDetailFragment fragment = new VaccinesDetailFragment();
+            fragment.setArguments(arguments);
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.detail_container, fragment)
+                    .commit();
+        }
+    }
+}

@@ -21,7 +21,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.vactracker.R;
 import com.example.vactracker.adapters.VaccineAdapter;
 import com.example.vactracker.ui.DataService;
+import com.example.vactracker.ui.data.Obj;
 import com.example.vactracker.ui.data.Vaccine;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -35,8 +39,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class VaccinesFragment extends Fragment {
 
     private VaccineAdapter vaccineAdapter;
-    private TextView random;
-    private static final String TAG = "Vaccine Repository";
+    private static final String TAG = "Vaccine Fragment";
 
 
     DataService service;
@@ -45,7 +48,7 @@ public class VaccinesFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-        vaccineAdapter = new VaccineAdapter();
+        vaccineAdapter = new VaccineAdapter(new ArrayList<Obj>());
 
         //API Methods
         //Retrofit converts the HTTP API into a Java interface
@@ -71,12 +74,8 @@ public class VaccinesFragment extends Fragment {
             public void onResponse(Call< Vaccine > call, Response<Vaccine> response) {
                 if (response.isSuccessful()) {
                     Log.d(TAG, "onResponse: SUCCESS");
-
-                    Vaccine vaccineInfo = response.body();
-                    //tvQuote.setText(quotes.getValue());
-                    System.out.println(vaccineInfo.getObjs().get(0).getDescription());
-                    System.out.println(response.body().toString());
-                    vaccineAdapter.setResults(vaccineInfo.getObjs());
+                    List<Obj> vaccines = response.body().getObjs();
+                    vaccineAdapter.setResults(vaccines);
 
                 } else {
                     Log.d(TAG, "onResponse: ERROR IS " + response.body());
