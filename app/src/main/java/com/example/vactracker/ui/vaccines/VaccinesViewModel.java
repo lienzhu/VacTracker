@@ -1,19 +1,31 @@
 package com.example.vactracker.ui.vaccines;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class VaccinesViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+import com.example.vactracker.ui.data.Vaccine;
 
-    public VaccinesViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is Vaccines fragment");
+public class VaccinesViewModel extends AndroidViewModel {
+
+
+    private LiveData<Vaccine> vaccineLiveData;
+
+    public VaccinesViewModel(@NonNull Application application) {
+        super(application);
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void init() {
+
+    }
+
+    public LiveData<Vaccine> getVaccineLiveData() {
+
+        return vaccineLiveData;
     }
 }

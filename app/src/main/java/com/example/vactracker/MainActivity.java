@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Main Activity";
     private AppBarConfiguration mAppBarConfiguration;
 
+    private DataService service;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -59,49 +62,45 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        //API Methods
-        //Retrofit converts the HTTP API into a Java interface
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.c3.ai")
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        Log.d(TAG, "onBuild: SUCCESS");
-
-        String filter = "{ \"spec\": {\"filter\": \"therapyType == 'Vaccine'\"} }";
-
-        //Call from the created DataService class can make a HTTP request to the remote C3.ai server.
-        DataService service = retrofit.create(DataService.class);
-
-        RequestBody body = RequestBody.create(MediaType.parse("text/plain"), filter);
-        Call<Vaccine> response = service.sendData(body);
-
-
-        //Implementing enqueue method to resolve NetworkOnMainThreadException that would normally occur from using execute().
-        response.enqueue(new Callback<Vaccine>() {
-            @Override
-            public void onResponse(Call<Vaccine> call, Response<Vaccine> response) {
-                if (response.isSuccessful()) {
-                    Log.d(TAG, "onResponse: SUCCESS");
-
-                    Vaccine vaccineInfo = response.body();
-                    //tvQuote.setText(quotes.getValue());
-                    System.out.println(vaccineInfo.getObjs().get(0).getDescription());
-                    System.out.println(response.body().toString());
-
-                } else {
-                    Log.d(TAG, "onResponse: ERROR IS " + response.body());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Vaccine> call, Throwable t) {
-                Log.d(TAG, "onFailure: ON FAILURE IS:" + t.getLocalizedMessage());
-            }
-        });
-
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("https://api.c3.ai")
+//                .addConverterFactory(ScalarsConverterFactory.create())
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        Log.d(TAG, "onBuild: SUCCESS");
+//
+//        String filter = "{ \"spec\": {\"filter\": \"therapyType == 'Vaccine'\"} }";
+//
+//        //Call from the created DataService class can make a HTTP request to the remote C3.ai server.
+//        service = retrofit.create(DataService.class);
+//
+//        RequestBody body = RequestBody.create(MediaType.parse("text/plain"), filter);
+//        Call<Vaccine> response = service.sendData(body);
+//
+//
+//        //Implementing enqueue method to resolve NetworkOnMainThreadException that would normally occur from using execute().
+//        response.enqueue(new Callback<Vaccine>() {
+//            @Override
+//            public void onResponse(Call<Vaccine> call, Response<Vaccine> response) {
+//                if (response.isSuccessful()) {
+//                    Log.d(TAG, "onResponse: SUCCESS");
+//
+//                    Vaccine vaccineInfo = response.body();
+//                    //tvQuote.setText(quotes.getValue());
+//                    System.out.println(vaccineInfo.getObjs().get(0).getDescription());
+//                    System.out.println(response.body().toString());
+//
+//                } else {
+//                    Log.d(TAG, "onResponse: ERROR IS " + response.body());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Vaccine> call, Throwable t) {
+//                Log.d(TAG, "onFailure: ON FAILURE IS:" + t.getLocalizedMessage());
+//            }
+//        });
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
