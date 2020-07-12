@@ -64,7 +64,7 @@ public class VaccinesDetailFragment extends Fragment {
             response.enqueue(new Callback<Vaccine>() {
                 @Override
                 public void onResponse(Call< Vaccine > call, Response<Vaccine> response) {
-                    if (response.isSuccessful()) {
+
                         List<Obj> objs = response.body().getObjs();
                         for(Obj obj : objs) {
                             if(obj.getId().equals(getArguments().getString(ARG_ITEM_ID))) {
@@ -76,10 +76,6 @@ public class VaccinesDetailFragment extends Fragment {
                         updateUi();
                         Log.d(TAG, "onResponse: 3");
 
-
-                    } else {
-
-                    }
                 }
 
                 @Override

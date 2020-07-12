@@ -33,7 +33,7 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
     private static final String TAG = "Vaccine Adapter";
 
     @Override
-    public VaccineHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VaccineAdapter.VaccineHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.vaccine_item, parent, false);
 
@@ -49,7 +49,6 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
                 Intent intent = new Intent(context, VaccinesDetailActivity.class);
                 intent.putExtra(VaccinesDetailFragment.ARG_ITEM_ID, obj.getId()
                 );
-            System.out.println(results.get(0).getId());
                 context.startActivity(intent);
 
         }
@@ -59,7 +58,7 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
         results = vaccines;
     }
 
-    class VaccineHolder extends RecyclerView.ViewHolder {
+    public static class VaccineHolder extends RecyclerView.ViewHolder {
         private TextView productType;
         private TextView developer;
         private TextView stage;

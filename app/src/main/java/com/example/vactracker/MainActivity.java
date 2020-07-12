@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+
+
 //        Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl("https://api.c3.ai")
 //                .addConverterFactory(ScalarsConverterFactory.create())
