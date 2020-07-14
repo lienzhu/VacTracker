@@ -36,10 +36,10 @@
         tools:layout="@layout/fragment_development" />
 
     <fragment
-        android:id="@+id/nav_map"
-        android:name="com.example.vactracker.ui.map.MapFragment"
-        android:label="Map"
-        tools:layout="@layout/fragment_map" />
+        android:id="@+id/nav_vaccines"
+        android:name="com.example.vactracker.ui.vaccines.VaccinesFragment"
+        android:label="Vaccines"
+        tools:layout="@layout/fragment_vaccines" />
 
     <fragment
         android:id="@+id/nav_support"
