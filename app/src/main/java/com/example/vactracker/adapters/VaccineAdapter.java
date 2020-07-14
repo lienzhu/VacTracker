@@ -31,47 +31,47 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
     private List<Obj> results;
 
     private static final String TAG = "Vaccine Adapter";
+    private RecyclerViewClickListener recyclerViewClickListener;
 
     @Override
     public VaccineAdapter.VaccineHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
+        View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.vaccine_item, parent, false);
 
-        return new VaccineHolder(itemView);
+        return new VaccineHolder(v, recyclerViewClickListener);
     }
 
-    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Obj obj = (Obj) v.getTag();
-            Context context = v.getContext();
 
-                Intent intent = new Intent(context, VaccinesDetailActivity.class);
-                intent.putExtra(VaccinesDetailFragment.ARG_ITEM_ID, obj.getId()
-                );
-                context.startActivity(intent);
 
-        }
-    };
+    public interface RecyclerViewClickListener{
+        void onClick(View view, int position);
+    }
 
-    public VaccineAdapter(List<Obj> vaccines){
+    public VaccineAdapter(List<Obj> vaccines, RecyclerViewClickListener listener){
         results = vaccines;
+        recyclerViewClickListener = listener;
     }
 
-    public static class VaccineHolder extends RecyclerView.ViewHolder {
+    public static class VaccineHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView productType;
         private TextView developer;
         private TextView stage;
         private TextView id;
-
-        public VaccineHolder(@NonNull View itemView) {
+        private RecyclerViewClickListener recyclerViewClickListener;
+        public VaccineHolder(View itemView, RecyclerViewClickListener listener) {
             super(itemView);
-
+            recyclerViewClickListener = listener;
+            itemView.setOnClickListener(this);
             productType = itemView.findViewById(R.id.product_type);
             developer = itemView.findViewById(R.id.developer);
             stage = itemView.findViewById(R.id.stage);
             id = itemView.findViewById(R.id.id);
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            recyclerViewClickListener.onClick(v, getAdapterPosition());
         }
     }
 
@@ -85,7 +85,7 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
         holder.developer.setText(obj.getDeveloper());
         holder.stage.setText(obj.getStageOfDevelopment());
         holder.id.setText(obj.getId());
-        holder.itemView.setOnClickListener(mOnClickListener);
+
 
     }
 
@@ -99,6 +99,8 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
         results.addAll(vaccines);
         notifyDataSetChanged();
     }
+
+
 
 
 }

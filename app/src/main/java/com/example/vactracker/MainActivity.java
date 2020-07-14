@@ -1,11 +1,13 @@
 package com.example.vactracker;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
 import com.example.vactracker.ui.DataService;
+import com.example.vactracker.ui.data.Obj;
 import com.example.vactracker.ui.data.Vaccine;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -18,6 +20,9 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import java.io.IOException;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "Main Activity";
     private AppBarConfiguration mAppBarConfiguration;
+
 
     private DataService service;
     @Override
@@ -62,46 +68,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
-
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("https://api.c3.ai")
-//                .addConverterFactory(ScalarsConverterFactory.create())
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        Log.d(TAG, "onBuild: SUCCESS");
-//
-//        String filter = "{ \"spec\": {\"filter\": \"therapyType == 'Vaccine'\"} }";
-//
-//        //Call from the created DataService class can make a HTTP request to the remote C3.ai server.
-//        service = retrofit.create(DataService.class);
-//
-//        RequestBody body = RequestBody.create(MediaType.parse("text/plain"), filter);
-//        Call<Vaccine> response = service.sendData(body);
-//
-//
-//        //Implementing enqueue method to resolve NetworkOnMainThreadException that would normally occur from using execute().
-//        response.enqueue(new Callback<Vaccine>() {
-//            @Override
-//            public void onResponse(Call<Vaccine> call, Response<Vaccine> response) {
-//                if (response.isSuccessful()) {
-//                    Log.d(TAG, "onResponse: SUCCESS");
-//
-//                    Vaccine vaccineInfo = response.body();
-//                    //tvQuote.setText(quotes.getValue());
-//                    System.out.println(vaccineInfo.getObjs().get(0).getDescription());
-//                    System.out.println(response.body().toString());
-//
-//                } else {
-//                    Log.d(TAG, "onResponse: ERROR IS " + response.body());
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Vaccine> call, Throwable t) {
-//                Log.d(TAG, "onFailure: ON FAILURE IS:" + t.getLocalizedMessage());
-//            }
-//        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -116,4 +82,6 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 }

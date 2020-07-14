@@ -14,7 +14,7 @@ public class VaccinesDetailActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
-            arguments.putString(VaccinesDetailFragment.ARG_ITEM_ID, getIntent().getStringExtra(VaccinesDetailFragment.ARG_ITEM_ID));
+            arguments.putInt(String.valueOf(VaccinesDetailFragment.EXTRA_MESSAGE), getIntent().getIntExtra(String.valueOf(VaccinesDetailFragment.EXTRA_MESSAGE),0));
             VaccinesDetailFragment fragment = new VaccinesDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
