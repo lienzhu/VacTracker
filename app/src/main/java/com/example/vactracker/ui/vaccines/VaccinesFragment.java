@@ -100,7 +100,7 @@ public class VaccinesFragment extends Fragment {
                         .build();
                 Log.d(TAG, "onBuild: SUCCESS");
 
-                String filter = "{ \"spec\": {\"filter\": \"therapyType == 'Vaccine'\"} }";
+                String filter = "{   \"spec\": {     \"filter\": \"therapyType == 'Vaccine' && target == 'COVID-19'\"} }";
 
                 //Call from the created DataService class can make a HTTP request to the remote C3.ai server.
                 service = retrofit.create(DataService.class);
@@ -145,4 +145,5 @@ public class VaccinesFragment extends Fragment {
         intent.putExtra(String.valueOf(EXTRA_MESSAGE), position);
         startActivity(intent);
     }
+
 }

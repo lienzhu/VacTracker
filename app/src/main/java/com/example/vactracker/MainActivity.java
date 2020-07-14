@@ -9,6 +9,7 @@ import android.view.Menu;
 import com.example.vactracker.ui.DataService;
 import com.example.vactracker.ui.data.Obj;
 import com.example.vactracker.ui.data.Vaccine;
+import com.example.vactracker.ui.vaccines.VaccinesFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -20,6 +21,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.room.Room;
 
 import java.io.IOException;
 import java.util.List;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private DataService service;
+    private AppDatabase mDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "app-database").allowMainThreadQueries().fallbackToDestructiveMigration()
+                .build();
+
+        new MainActivity.GetObjTask().execute();
+        Log.d(TAG, "onCreate: GetObjTask executed");
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -81,6 +89,48 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    private class GetObjTask extends AsyncTask<Void, Void, List<Obj>> {
+        @Override
+        protected List<Obj> doInBackground(Void... voids) {
+            try {
+
+                //API Methods
+                //Retrofit converts the HTTP API into a Java interface
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://api.c3.ai")
+                        .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                Log.d(TAG, "onBuild: SUCCESS");
+
+                String filter = "{   \"spec\": {     \"filter\": \"therapyType == 'Vaccine' && target == 'COVID-19'\"} }";
+
+                //Call from the created DataService class can make a HTTP request to the remote C3.ai server.
+                service = retrofit.create(DataService.class);
+
+                RequestBody body = RequestBody.create(MediaType.parse("text/plain"), filter);
+                Call<Vaccine> call = service.sendData(body);
+                Response<Vaccine> response = call.execute();
+                List<Obj> objs = response.body().getObjs();
+
+                //replacing all values in DB
+                mDb.objDAO().deleteAll(mDb.objDAO().getObjs().toArray(new Obj[mDb.objDAO().getObjs().size()]));
+                Log.d(TAG, "doInBackground: Deleted");
+                mDb.objDAO().insertAll(objs.toArray(new Obj[objs.size()]));
+                Log.d(TAG, "doInBackground: Added");
+                return objs;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(List<Obj> objs) {
+
+        }
     }
 
 
