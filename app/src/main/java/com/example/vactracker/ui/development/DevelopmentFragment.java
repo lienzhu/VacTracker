@@ -103,7 +103,8 @@ public class DevelopmentFragment extends Fragment {
         String filter = "{ \"spec\": {\"filter\": \"therapyType == 'Vaccine'\"} }";
         //String filter = "{   \"spec\": {     \"filter\": \"therapyType == 'Vaccine' && origin == 'Milken' && contains(nextSteps, 'Phase 2') \"   } }";
         //String filter = "{   \"spec\": {     \"filter\": \"therapyType == 'Vaccine' && target == 'COVID-19' && exists(nextSteps) \"   } }";
-            //Call from the created DataService class can make a HTTP request to the remote C3.ai server.
+        //String filter = "{   \"spec\": {     \"filter\": \"therapyType == 'Vaccine' && target == 'COVID-19'\"} }";
+        //Call from the created DataService class can make a HTTP request to the remote C3.ai server.
         DataService service = retrofit.create(DataService.class);
 
         RequestBody body = RequestBody.create(MediaType.parse("text/plain"), filter);
