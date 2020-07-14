@@ -38,6 +38,9 @@ public class Obj {
     @SerializedName("clinicalTrialsOtherDiseases")
     @Expose
     private String clinicalTrialsOtherDiseases;
+    @SerializedName("nextSteps")
+    @Expose
+    private String nextSteps;
 
     /**
      * No args constructor for use in serialization
@@ -59,8 +62,9 @@ public class Obj {
      * @param productType
      * @param stageOfDevelopment
      * @param target
+     * @param nextSteps
      */
-    public Obj(String productType, String description, String developer, String stageOfDevelopment, String therapyType, String origin, String target, String id, Meta meta, Integer version, String clinicalTrialsOtherDiseases) {
+    public Obj(String productType, String description, String developer, String stageOfDevelopment, String nextSteps, String therapyType, String origin, String target, String id, Meta meta, Integer version, String clinicalTrialsOtherDiseases) {
         super();
         this.productType = productType;
         this.description = description;
@@ -73,6 +77,7 @@ public class Obj {
         this.meta = meta;
         this.version = version;
         this.clinicalTrialsOtherDiseases = clinicalTrialsOtherDiseases;
+        this.nextSteps = nextSteps;
     }
 
     public String getProductType() {
@@ -218,4 +223,16 @@ public class Obj {
         return this;
     }
 
+    public String getNextSteps() {
+        return nextSteps;
+    }
+
+    public void setNextSteps(String nextSteps) {
+        this.nextSteps = nextSteps;
+    }
+
+    public Obj withNextSteps(String nextSteps) {
+        this.nextSteps = nextSteps;
+        return this;
+    }
 }
