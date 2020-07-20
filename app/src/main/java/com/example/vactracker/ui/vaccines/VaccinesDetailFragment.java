@@ -71,12 +71,12 @@ public class VaccinesDetailFragment extends Fragment {
         ((TextView) root.findViewById(R.id.developer)).setText(vaccineObject.getDeveloper());
         ((TextView) root.findViewById(R.id.stage)).setText(vaccineObject.getStageOfDevelopment());
         ((TextView) root.findViewById(R.id.origin)).setText(vaccineObject.getOrigin());
-        ((TextView) root.findViewById(R.id.target)).setText(vaccineObject.getTarget());
-        ((TextView) root.findViewById(R.id.id)).setText(vaccineObject.getId());
 
-        ((TextView) root.findViewById(R.id.version)).setText(String.valueOf(vaccineObject.getVersion()));
+        ((TextView) root.findViewById(R.id.funding_source)).setText(vaccineObject.getFundingSources());
+
+        ((TextView) root.findViewById(R.id.next_steps)).setText(vaccineObject.getNextSteps());
         ((TextView) root.findViewById(R.id.clinical)).setText(vaccineObject.getClinicalTrialsOtherDiseases());
-        ((AppCompatActivity) root.getContext()).setTitle(vaccineObject.getId());
+
         Log.d(TAG, "onCreateView: Success 2");
         return root;
     }

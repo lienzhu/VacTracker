@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,8 +29,9 @@ import java.util.List;
 
 import okhttp3.internal.Util;
 
-public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineHolder> {
+public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineHolder> implements Filterable {
     private List<Obj> results;
+    private List<Obj> resultsFull;
 
     private static final String TAG = "Vaccine Adapter";
     private RecyclerViewClickListener recyclerViewClickListener;
@@ -49,6 +52,7 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
 
     public VaccineAdapter(List<Obj> vaccines, RecyclerViewClickListener listener){
         results = vaccines;
+        resultsFull = new ArrayList<>(vaccines);
         recyclerViewClickListener = listener;
     }
 
@@ -56,7 +60,6 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
         private TextView productType;
         private TextView developer;
         private TextView stage;
-        private TextView id;
         private RecyclerViewClickListener recyclerViewClickListener;
         public VaccineHolder(View itemView, RecyclerViewClickListener listener) {
             super(itemView);
@@ -65,7 +68,6 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
             productType = itemView.findViewById(R.id.product_type);
             developer = itemView.findViewById(R.id.developer);
             stage = itemView.findViewById(R.id.stage);
-            id = itemView.findViewById(R.id.id);
 
         }
 
@@ -82,9 +84,10 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
         Obj obj = results.get(position);
 
         holder.productType.setText(obj.getProductType());
+
         holder.developer.setText(obj.getDeveloper());
         holder.stage.setText(obj.getStageOfDevelopment());
-        holder.id.setText(obj.getId());
+
 
 
     }
@@ -100,7 +103,43 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
         notifyDataSetChanged();
     }
 
+    @Override
+    public Filter getFilter(){
+        return filter;
+    }
 
 
+    private Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Obj> filteredList = new ArrayList<>();
+
+            if(constraint == null || constraint.length() == 0) {
+                filteredList.addAll(resultsFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Obj obj : resultsFull) {
+                    if(obj.getDeveloper().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(obj);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults filterResults) {
+
+            results.clear();
+            results.addAll((List)filterResults.values);
+            notifyDataSetChanged();
+
+        }
+    };
 
 }
