@@ -50,6 +50,10 @@ public class Obj {
     @Expose
     private String nextSteps;
 
+    @SerializedName("fundingSources")
+    @Expose
+    private String fundingSources;
+
     /**
      * No args constructor for use in serialization
      *
@@ -71,8 +75,9 @@ public class Obj {
      * @param stageOfDevelopment
      * @param target
      * @param nextSteps
+     * @param fundingSources
      */
-    public Obj(String productType, String description, String developer, String stageOfDevelopment, String nextSteps, String therapyType, String origin, String target, String id, Meta meta, Integer version, String clinicalTrialsOtherDiseases) {
+    public Obj(String productType, String description, String developer, String stageOfDevelopment, String nextSteps, String therapyType, String origin, String target, String id, Meta meta, Integer version, String clinicalTrialsOtherDiseases, String fundingSources) {
         super();
         this.productType = productType;
         this.description = description;
@@ -86,6 +91,7 @@ public class Obj {
         this.version = version;
         this.clinicalTrialsOtherDiseases = clinicalTrialsOtherDiseases;
         this.nextSteps = nextSteps;
+        this.fundingSources = fundingSources;
     }
 
     public String getProductType() {
@@ -242,5 +248,13 @@ public class Obj {
     public Obj withNextSteps(String nextSteps) {
         this.nextSteps = nextSteps;
         return this;
+    }
+
+    public String getFundingSources() {
+        return fundingSources;
+    }
+
+    public void setFundingSources(String fundingSources) {
+        this.fundingSources = fundingSources;
     }
 }
