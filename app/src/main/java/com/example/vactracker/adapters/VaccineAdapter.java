@@ -52,14 +52,14 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
     }
 
     public static class VaccineHolder extends RecyclerView.ViewHolder {
-        private TextView productType;
+
         private TextView developer;
         private TextView stage;
         public View view;
 
         public VaccineHolder(View itemView) {
             super(itemView);
-            productType = itemView.findViewById(R.id.product_type);
+
             developer = itemView.findViewById(R.id.developer);
             stage = itemView.findViewById(R.id.stage);
             view = itemView;
@@ -75,7 +75,6 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
     public void onBindViewHolder(@NonNull final VaccineHolder holder, final int position) {
         Obj currentObj = results.get(position);
 
-        holder.productType.setText(currentObj.getProductType());
 
         holder.developer.setText(currentObj.getDeveloper());
         holder.stage.setText(currentObj.getStageOfDevelopment());
