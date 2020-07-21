@@ -46,7 +46,7 @@ public class VaccinesFragment extends Fragment {
     private RecyclerView mRvList;
 
 
-    public static final Integer EXTRA_MESSAGE = 0;
+    public static String EXTRA_MESSAGE = "id";
     DataService service;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,14 +73,9 @@ public class VaccinesFragment extends Fragment {
          mRvList = root.findViewById(R.id.list);
 
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
-        VaccineAdapter.RecyclerViewClickListener listener = new VaccineAdapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                launchDetail(position);
-            }
-        };
 
-        vaccineAdapter = new VaccineAdapter(mDb.objDAO().getObjs(),listener);
+
+        vaccineAdapter = new VaccineAdapter(mDb.objDAO().getObjs());
 
         mRvList.setAdapter(vaccineAdapter);
         setHasOptionsMenu(true);

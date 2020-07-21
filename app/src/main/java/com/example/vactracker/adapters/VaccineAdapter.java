@@ -34,61 +34,70 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
     private List<Obj> resultsFull;
 
     private static final String TAG = "Vaccine Adapter";
-    private RecyclerViewClickListener recyclerViewClickListener;
+
 
     @Override
     public VaccineAdapter.VaccineHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.vaccine_item, parent, false);
 
-        return new VaccineHolder(v, recyclerViewClickListener);
+        return new VaccineHolder(v);
     }
 
 
 
-    public interface RecyclerViewClickListener{
-        void onClick(View view, int position);
-    }
-
-    public VaccineAdapter(List<Obj> vaccines, RecyclerViewClickListener listener){
+    public VaccineAdapter(List<Obj> vaccines){
         results = vaccines;
         resultsFull = new ArrayList<>(vaccines);
-        recyclerViewClickListener = listener;
     }
 
-    public static class VaccineHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class VaccineHolder extends RecyclerView.ViewHolder {
         private TextView productType;
         private TextView developer;
         private TextView stage;
-        private RecyclerViewClickListener recyclerViewClickListener;
-        public VaccineHolder(View itemView, RecyclerViewClickListener listener) {
+        public View view;
+
+        public VaccineHolder(View itemView) {
             super(itemView);
-            recyclerViewClickListener = listener;
-            itemView.setOnClickListener(this);
             productType = itemView.findViewById(R.id.product_type);
             developer = itemView.findViewById(R.id.developer);
             stage = itemView.findViewById(R.id.stage);
+            view = itemView;
 
         }
 
-        @Override
-        public void onClick(View v) {
-            recyclerViewClickListener.onClick(v, getAdapterPosition());
-        }
+
     }
 
 
 
     @Override
-    public void onBindViewHolder(@NonNull VaccineHolder holder, int position) {
-        Obj obj = results.get(position);
+    public void onBindViewHolder(@NonNull final VaccineHolder holder, final int position) {
+        Obj currentObj = results.get(position);
 
-        holder.productType.setText(obj.getProductType());
+        holder.productType.setText(currentObj.getProductType());
 
-        holder.developer.setText(obj.getDeveloper());
-        holder.stage.setText(obj.getStageOfDevelopment());
+        holder.developer.setText(currentObj.getDeveloper());
+        holder.stage.setText(currentObj.getStageOfDevelopment());
 
 
+        holder.view.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+//                VaccinesDetailFragment vaccinesDetailFragment = new VaccinesDetailFragment();
+//                Bundle bundle = new Bundle();
+//                bundle.putString("id",currentObj.getId());
+//                vaccinesDetailFragment.setArguments(bundle);
+
+                Context context = v.getContext();
+                Intent intent = new Intent(context, VaccinesDetailActivity.class);
+                intent.putExtra(String.valueOf(VaccinesDetailFragment.EXTRA_MESSAGE), currentObj.getId());
+                context.startActivity(intent);
+
+
+        }
+        });
 
     }
 

@@ -40,7 +40,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class VaccinesDetailFragment extends Fragment {
 
-    public static final Integer EXTRA_MESSAGE = 0;
+    public static String EXTRA_MESSAGE = "id";
     private Obj vaccineObject;
     private static final String TAG = "Vaccine Detail";
     private AppDatabase mDb;
@@ -69,8 +69,8 @@ public class VaccinesDetailFragment extends Fragment {
 //            Log.d(TAG, "onCreate: Success");
 //        }
         Intent intent = getActivity().getIntent();
-        int position = intent.getIntExtra(String.valueOf(VaccinesFragment.EXTRA_MESSAGE), 0);
-        vaccineObject = mDb.objDAO().getObjs().get(position);
+        String id = intent.getStringExtra(VaccinesFragment.EXTRA_MESSAGE);
+        vaccineObject = mDb.objDAO().getObj(id);
         System.out.println(vaccineObject.getDeveloper());
         ((TextView) root.findViewById(R.id.product_type)).setText(vaccineObject.getProductType());
         ((TextView) root.findViewById(R.id.description)).setText(vaccineObject.getDescription());
