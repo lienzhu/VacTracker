@@ -102,24 +102,33 @@ public class DevelopmentFragment extends Fragment {
         progressBarCircle.setIndeterminate(false);
         progressBarCircle.setProgress(34);
 
-        System.out.println(mDb.objDAO().getObjs().get(0).getNextSteps());
-
         ArrayList<String> vaccineDevelopmentArray = new ArrayList<String>();
 
-        //Test
-        if(mDb.objDAO().getObjs().get(0).getNextSteps().contains("Phase 2")){
-            System.out.println("Contains Phase 2");
-        }
+        //System.out.println("Size of db obj: " + mDb.objDAO().getObjs().size());
 
         //vaccineObject = mDb.objDAO().getObjs().get(position);
-        for (int i = 0; i<2; i++) {
-            if(mDb.objDAO().getObjs().get(i).getNextSteps().contains("Phase 2")){
-                vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
+        for (int i = 0; i<mDb.objDAO().getObjs().size(); i++) {
+            if(mDb.objDAO().getObjs().get(i).getNextSteps() !=null){
+                if (mDb.objDAO().getObjs().get(i).getNextSteps().contains("Phase 2")){
+                    vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
+                    //System.out.println(mDb.objDAO().getObjs().get(i).getNextSteps());
+                }
             }
-
         }
 
         System.out.println(vaccineDevelopmentArray);
+
+        for (int n =0; n<vaccineDevelopmentArray.size();n++){
+            String cleanTitle = vaccineDevelopmentArray.get(n).toString().split("(/)|(,)")[0];
+            vaccineDevelopmentArray.set(n,cleanTitle);
+        }
+
+        tvCandidate1.setText(vaccineDevelopmentArray.get(0));
+        tvCandidate2.setText(vaccineDevelopmentArray.get(1));
+        tvCandidate3.setText(vaccineDevelopmentArray.get(2));
+        tvCandidate4.setText(vaccineDevelopmentArray.get(3));
+        tvCandidate5.setText(vaccineDevelopmentArray.get(4));
+
 
 
 
