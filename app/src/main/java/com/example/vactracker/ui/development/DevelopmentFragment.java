@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -41,11 +42,16 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import java.lang.reflect.Type;
+import java.util.Map;
+
+import static java.lang.Double.valueOf;
 
 public class DevelopmentFragment extends Fragment {
 
     TextView d;
     private static final String TAG = "Development Fragment";
+    private TextView tvVaccineType;
+    private TextView tvVaccineTypeValue;
     private TextView tvCandidate1;
     private TextView tvCandidate2;
     private TextView tvCandidate3;
@@ -88,6 +94,8 @@ public class DevelopmentFragment extends Fragment {
             }
         });
 
+        tvVaccineType = root.findViewById(R.id.tvVaccineType);
+        tvVaccineTypeValue = root.findViewById(R.id.tvVaccineTypeValue);
         tvCandidate1 = root.findViewById(R.id.tvCandidate1);
         tvCandidate2 = root.findViewById(R.id.tvCandidate2);
         tvCandidate3 = root.findViewById(R.id.tvCandidate3);
@@ -109,15 +117,18 @@ public class DevelopmentFragment extends Fragment {
         //vaccineObject = mDb.objDAO().getObjs().get(position);
         for (int i = 0; i<mDb.objDAO().getObjs().size(); i++) {
             if(mDb.objDAO().getObjs().get(i).getNextSteps() !=null){
-                if (mDb.objDAO().getObjs().get(i).getNextSteps().contains("Phase 2")){
+                if (mDb.objDAO().getObjs().get(i).getNextSteps().contains("Phase 3")){
                     vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
                     //System.out.println(mDb.objDAO().getObjs().get(i).getNextSteps());
+                } else if (mDb.objDAO().getObjs().get(i).getNextSteps().contains("Phase 2")){
+                    vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
                 }
             }
         }
 
         System.out.println(vaccineDevelopmentArray);
 
+        //Cleaning the display data and setting TextViews
         for (int n =0; n<vaccineDevelopmentArray.size();n++){
             String cleanTitle = vaccineDevelopmentArray.get(n).toString().split("(/)|(,)")[0];
             vaccineDevelopmentArray.set(n,cleanTitle);
@@ -129,7 +140,90 @@ public class DevelopmentFragment extends Fragment {
         tvCandidate4.setText(vaccineDevelopmentArray.get(3));
         tvCandidate5.setText(vaccineDevelopmentArray.get(4));
 
+        //Types of vaccines
+        int countDNA = 0; int countInactiveVirus =0;
+        int countLiveVirus = 0; int countNonRepViralVector = 0; int countProtein = 0;
+        int countRepViralVector = 0; int countRNA = 0; int countVirusLike = 0; int countUnknown = 0;
 
+        for (int j = 0; j<mDb.objDAO().getObjs().size(); j++) {
+
+            String vaccineType = mDb.objDAO().getObjs().get(j).getDescription();
+
+                if (mDb.objDAO().getObjs().get(j).getDescription().contains("DNA")){
+                    countDNA = countDNA + 1;
+
+                } else if (mDb.objDAO().getObjs().get(j).getDescription().contains("Non-replicating")){
+                    countNonRepViralVector = countNonRepViralVector + 1;
+                } else if (mDb.objDAO().getObjs().get(j).getDescription().contains("virus-like")){
+                    countVirusLike = countVirusLike + 1;
+                } else if (mDb.objDAO().getObjs().get(j).getDescription().contains("Inactiv")){
+                    countInactiveVirus = countInactiveVirus + 1;
+                } else if (mDb.objDAO().getObjs().get(j).getDescription().contains("attenuated")){
+                    countLiveVirus = countLiveVirus + 1;
+                } else if (mDb.objDAO().getObjs().get(j).getDescription().contains("sub")) {
+                    countProtein = countProtein + 1;
+                } else if (mDb.objDAO().getObjs().get(j).getDescription().contains("RNA")){
+                    countRNA = countRNA + 1;
+                } else if (mDb.objDAO().getObjs().get(j).getDescription().contains("Replicating")){
+                    countRepViralVector = countRepViralVector + 1;
+                } else if (mDb.objDAO().getObjs().get(j).getDescription().contains("Unknown")){
+                    countUnknown = countUnknown + 1;
+                }
+
+        }
+
+//        ArrayList<Integer> vaccineTypeArray = new ArrayList<Integer>();
+//        Collections.addAll(vaccineTypeArray, countDNA, countInactiveVirus, countLiveVirus,
+//                countNonRepViralVector, countProtein, countRepViralVector,
+//                countRNA,countVirusLike,countUnknown);
+//        Collections.max(vaccineTypeArray);
+
+        HashMap<String,Integer> vaccineMap = new HashMap<String,Integer>();
+        vaccineMap.put("DNA-based",countDNA);
+        vaccineMap.put("Inactivated Virus",countInactiveVirus);
+        vaccineMap.put("Live Attenuated Virus",countLiveVirus);
+        vaccineMap.put("Non-replicating Virus",countNonRepViralVector);
+        vaccineMap.put("Protein Subunit",countProtein);
+        vaccineMap.put("Replicating Viral Vector",countRepViralVector);
+        vaccineMap.put("RNA-based",countRNA);
+        vaccineMap.put("Virus-like Particle",countVirusLike);
+        vaccineMap.put("Unknown",countUnknown);
+
+        double sum = 0;
+        int maxValueInMap=(Collections.max(vaccineMap.values()));  // This will return max value in the Hashmap
+        for (Map.Entry<String, Integer> entry : vaccineMap.entrySet()) { // Iterate through hashmap
+                 sum = sum + entry.getValue(); //Sum of all vaccine type counts
+
+            if (entry.getValue()==maxValueInMap) {
+                System.out.println(entry.getKey());     // Print the key with max value
+                System.out.println(entry.getValue());
+                System.out.println(sum);
+                System.out.println(String.valueOf((entry.getValue()/sum)));
+                double percentage = (entry.getValue()/sum)*100;
+                int percentageInt = (int) percentage;
+
+                tvVaccineType.setText(entry.getKey().toString());
+                //tvVaccineTypeValue.setText(String.valueOf((entry.getValue()/sum)));
+                tvVaccineTypeValue.setText(String.valueOf(percentageInt));
+
+                progressBarCircle.setIndeterminate(false);
+                progressBarCircle.setProgress(0); //fixing Android Studio progress bar bug
+                progressBarCircle.setMax(100);
+                progressBarCircle.setProgress(percentageInt);
+            }
+        }
+
+
+        System.out.println("DNA: " + countDNA + "," +
+                               "Non-replicating: " + countNonRepViralVector + "," +
+                        "Virus-Like: " + countVirusLike + "," +
+                        "Inactivated: " + countInactiveVirus + "," +
+                        "Attentuated Live: " + countLiveVirus + "," +
+                        "Protein: " + countProtein + "," +
+                        "RNA: " + countRNA + "," +
+                        "Replicating: " + countRepViralVector + "," +
+                        "Unknown: " + countUnknown
+                );
 
 
         return root;
