@@ -77,8 +77,11 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
 
 
         holder.developer.setText(currentObj.getDeveloper());
-        holder.stage.setText(currentObj.getStageOfDevelopment());
+        holder.stage.setText(currentObj.getStageOfDevelopment().toUpperCase());
 
+        if(currentObj.getStageOfDevelopment() == "Pre-clincial" || currentObj.getStageOfDevelopment() == "Pre-Clincial"){
+            holder.stage.setText("PRE-CLINICAL");
+        }
 
         holder.view.setOnClickListener(new View.OnClickListener(){
 
