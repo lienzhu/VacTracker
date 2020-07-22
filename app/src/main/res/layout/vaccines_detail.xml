@@ -56,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="@+id/developer" />
 
     <TextView
-        android:id="@+id/clinical"
+        android:id="@+id/clinical_button"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="clinical"
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:text="funding source"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView23"
-        app:layout_constraintEnd_toEndOf="@+id/clinical" />
+        app:layout_constraintEnd_toEndOf="@+id/clinical_button" />
 
     <TextView
         android:id="@+id/product_type"
@@ -133,7 +133,7 @@
         android:layout_marginTop="8dp"
         android:text="Funding source:"
         app:layout_constraintEnd_toEndOf="@+id/textView22"
-        app:layout_constraintTop_toBottomOf="@+id/clinical" />
+        app:layout_constraintTop_toBottomOf="@+id/clinical_button" />
 
     <TextView
         android:id="@+id/textView24"

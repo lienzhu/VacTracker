@@ -6,12 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".ui.vaccines.VaccinesFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
-        android:layout_width="403dp"
+    <ScrollView
+        android:layout_width="413dp"
+        android:layout_height="613dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/all_button">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="403dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/all_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="32dp"
+        android:text="all"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/preclinical_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:text="pre-clinical"
+        app:layout_constraintBaseline_toBaselineOf="@+id/clinical_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/clinical_button" />
+
+    <Button
+        android:id="@+id/clinical_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:text="clinical"
+        app:layout_constraintBaseline_toBaselineOf="@+id/all_button"
+        app:layout_constraintStart_toEndOf="@+id/all_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
