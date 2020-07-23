@@ -1,12 +1,15 @@
 package com.example.vactracker.ui.vaccines;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,7 +27,7 @@ public class VaccinesDetailFragment extends Fragment {
     private Obj vaccineObject;
     private static final String TAG = "Vaccine Detail";
     private AppDatabase mDb;
-
+    private ImageView googleSearch;
     DataService service;
 
     public VaccinesDetailFragment() {
@@ -44,12 +47,15 @@ public class VaccinesDetailFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.vaccines_detail, container, false);
         Button info = root.findViewById(R.id.info);
+        googleSearch = root.findViewById(R.id.google_search);
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), PopInfo.class));
             }
         });
+
+
 
 //        if(getArguments().containsKey(String.valueOf(VaccinesFragment.EXTRA_MESSAGE))){
 //            new GetVaccineDBTask().execute(getArguments().getString(String.valueOf(EXTRA_MESSAGE)));
@@ -112,6 +118,12 @@ public class VaccinesDetailFragment extends Fragment {
         }
 
 
+        googleSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchVaccine(vaccineObject.getDeveloper());
+            }
+        });
 
 
 
@@ -119,33 +131,22 @@ public class VaccinesDetailFragment extends Fragment {
         return root;
     }
 
-//    private void updateUi() {
-//        View rootView = getView();
-//        if(rootView != null && vaccineObject != null) {
-//            ((TextView) rootView.findViewById(R.id.product_type)).setText(vaccineObject.getProductType());
-//            ((TextView) rootView.findViewById(R.id.description)).setText(vaccineObject.getDescription());
-//            ((TextView) rootView.findViewById(R.id.developer)).setText(vaccineObject.getDeveloper());
-//            ((TextView) rootView.findViewById(R.id.stage)).setText(vaccineObject.getStageOfDevelopment());
-//            ((TextView) rootView.findViewById(R.id.origin)).setText(vaccineObject.getOrigin());
-//            ((TextView) rootView.findViewById(R.id.target)).setText(vaccineObject.getTarget());
-//            ((TextView) rootView.findViewById(R.id.id)).setText(vaccineObject.getId());
-//
-//            ((TextView) rootView.findViewById(R.id.version)).setText(String.valueOf(vaccineObject.getVersion()));
-//            ((TextView) rootView.findViewById(R.id.clinical)).setText(vaccineObject.getClinicalTrialsOtherDiseases());
-//            ((AppCompatActivity) rootView.getContext()).setTitle(vaccineObject.getId());
-//        }
-//    }
+    private void searchVaccine(String name) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=" + name + " COVID-19 vaccine"));
+        startActivity(intent);
+    }
 
-//    private class GetVaccineDBTask extends AsyncTask<String, Void, Obj> {
-//        @Override
-//        protected Obj doInBackground(String... ids) {
-//            return mDb.objDAO().getObj(ids[0]);
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Obj obj) {
-//            vaccineObject = obj;
-//            updateUi();
-//        }
-//    }
+
+    private class GetVaccineDBTask extends AsyncTask<String, Void, Obj> {
+        @Override
+        protected Obj doInBackground(String... ids) {
+            return mDb.objDAO().getObj(ids[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Obj obj) {
+            vaccineObject = obj;
+
+        }
+    }
 }

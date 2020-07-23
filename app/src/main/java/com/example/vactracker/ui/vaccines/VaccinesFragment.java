@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,6 +51,7 @@ public class VaccinesFragment extends Fragment {
     private Button allButton, preclinicalButton, clinicalButton;
 
 
+
     public static String EXTRA_MESSAGE = "id";
     DataService service;
     @Override
@@ -78,6 +80,7 @@ public class VaccinesFragment extends Fragment {
          allButton = root.findViewById(R.id.all_button);
          preclinicalButton = root.findViewById(R.id.preclinical_button);
          clinicalButton = root.findViewById(R.id.clinical_button);
+
 
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
 

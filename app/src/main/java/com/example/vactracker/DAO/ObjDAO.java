@@ -23,6 +23,12 @@ public interface ObjDAO {
     @Query("SELECT * FROM obj WHERE id == :objID")
     Obj getObj(String objID);
 
+    @Query("SELECT COUNT(id) FROM obj WHERE stageOfDevelopment != 'Pre-clinical' AND stageOfDevelopment != 'Pre-Clinical' AND stageOfDevelopment != 'Pre-clincial' AND stageOfDevelopment != 'Pre-Clincial'")
+    int getClinicalTotal();
+
+    @Query("SELECT COUNT(id) FROM obj")
+    int getTotal();
+
     @Insert
     void insertAll(Obj... objs);
 
