@@ -15,11 +15,14 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
+import com.example.vactracker.AppDatabase;
 import com.example.vactracker.R;
 import com.example.vactracker.ui.DataService;
 import com.example.vactracker.ui.NewsAdapter;
 import com.example.vactracker.ui.NewsService;
+import com.example.vactracker.ui.data.Obj;
 import com.example.vactracker.ui.data.Vaccine;
 import com.example.vactracker.ui.newsdata.Article;
 import com.example.vactracker.ui.newsdata.News;
@@ -53,6 +56,9 @@ public class HomeFragment extends Fragment {
     private Integer numberVaccines;
     private Integer numberVaccinesClinical = 0;
 
+    private Obj vaccineObject;
+    private AppDatabase mDb;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -67,68 +73,14 @@ public class HomeFragment extends Fragment {
 //            }
 //        });
 
+        mDb = Room.databaseBuilder(getContext(), AppDatabase.class, "app-database").allowMainThreadQueries().fallbackToDestructiveMigration()
+                .build();
+
         tvNumberVaccines = root.findViewById(R.id.tvNumberVaccines);
         tvNumberVaccinesClinical = root.findViewById(R.id.tvNumberVaccinesClinical);
 
-        //API Methods - Vaccine Data
-        //Retrofit converts the HTTP API into a Java interface
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.c3.ai")
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        Log.d(TAG, "onBuild: SUCCESS");
-
-        //String filter = "{ \"spec\": {\"filter\": \"therapyType == 'Vaccine'\"} }";
-        String filter = "{   \"spec\": {     \"filter\": \"therapyType == 'Vaccine' && origin == 'Milken' \"   } }";
-
-        //Call from the created DataService class can make a HTTP request to the remote C3.ai server.
-        DataService service = retrofit.create(DataService.class);
-
-        RequestBody body = RequestBody.create(MediaType.parse("text/plain"), filter);
-        Call<Vaccine> response = service.sendData(body);
-
-
-        //Implementing enqueue method to resolve NetworkOnMainThreadException that would normally occur from using execute().
-        response.enqueue(new Callback<Vaccine>() {
-            @Override
-            public void onResponse(Call<Vaccine> call, Response<Vaccine> response) {
-                if (response.isSuccessful()) {
-                    Log.d(TAG, "onResponse: SUCCESS");
-
-                    Vaccine vaccineInfo = response.body();
-                    numberVaccines = vaccineInfo.getCount();
-
-                    for (int m = 0; m<numberVaccines; m++){
-                        if (vaccineInfo.getObjs().get(m).getStageOfDevelopment().equals("Clinical")) {
-                            numberVaccinesClinical = numberVaccinesClinical+1;
-                        }
-                    }
-
-                    //numberVaccinesHumanTrials = vaccineInfo.getObjs().get(0).getStageOfDevelopment().equals("Pre-Clinical");
-                    System.out.println("Total number of vaccines is: " + numberVaccines);
-                    System.out.println("Developer: " + vaccineInfo.getObjs().get(1).getDeveloper());
-
-                    //tvQuote.setText(quotes.getValue());
-                    System.out.println(vaccineInfo.getObjs().get(0).getDescription());
-                    System.out.println(vaccineInfo.getObjs().get(0).getStageOfDevelopment());
-
-                    //Set the number of vaccines textview/display on the Home screen
-                    tvNumberVaccines.setText(numberVaccines.toString());
-                    tvNumberVaccinesClinical.setText(numberVaccinesClinical.toString());
-
-                    //System.out.println(response.body().toString());
-
-                } else {
-                    Log.d(TAG, "onResponse: ERROR IS " + response.body());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Vaccine> call, Throwable t) {
-                Log.d(TAG, "onFailure: ON FAILURE IS:" + t.getLocalizedMessage());
-            }
-        });
+        tvNumberVaccines.setText(String.valueOf(mDb.objDAO().getTotal()));
+        tvNumberVaccinesClinical.setText(String.valueOf(mDb.objDAO().getClinicalTotal()));
 
         //API Methods - Newsfeed
         //Retrofit converts the HTTP API into a Java interface
