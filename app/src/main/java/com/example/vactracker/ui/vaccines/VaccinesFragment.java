@@ -43,8 +43,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class VaccinesFragment extends Fragment {
 
     private VaccineAdapter vaccineAdapter;
-    private VaccineAdapter vaccineAdapter2;
-    private VaccineAdapter vaccineAdapter3;
     private static final String TAG = "Vaccine Fragment";
     private AppDatabase mDb;
     private RecyclerView mRvList;
@@ -93,18 +91,18 @@ public class VaccinesFragment extends Fragment {
         preclinicalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vaccineAdapter2 = new VaccineAdapter(mDb.objDAO().getPreclinicalObjs());
+                vaccineAdapter = new VaccineAdapter(mDb.objDAO().getPreclinicalObjs());
                 mRvList.setAdapter(null);
-                mRvList.setAdapter(vaccineAdapter2);
+                mRvList.setAdapter(vaccineAdapter);
             }
         });
 
         clinicalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vaccineAdapter3 = new VaccineAdapter(mDb.objDAO().getClinicalObjs());
+                vaccineAdapter = new VaccineAdapter(mDb.objDAO().getClinicalObjs());
                 mRvList.setAdapter(null);
-                mRvList.setAdapter(vaccineAdapter3);
+                mRvList.setAdapter(vaccineAdapter);
             }
         });
 
