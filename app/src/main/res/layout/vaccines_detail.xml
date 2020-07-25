@@ -56,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="@+id/developer" />
 
     <TextView
-        android:id="@+id/clinical"
+        android:id="@+id/clinical_button"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="clinical"
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:text="funding source"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView23"
-        app:layout_constraintEnd_toEndOf="@+id/clinical" />
+        app:layout_constraintEnd_toEndOf="@+id/clinical_button" />
 
     <TextView
         android:id="@+id/product_type"
@@ -94,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Developer:"
+        android:text="Developers:"
         app:layout_constraintEnd_toEndOf="@+id/textView18"
         app:layout_constraintTop_toBottomOf="@+id/description" />
 
@@ -133,7 +133,7 @@
         android:layout_marginTop="8dp"
         android:text="Funding source:"
         app:layout_constraintEnd_toEndOf="@+id/textView22"
-        app:layout_constraintTop_toBottomOf="@+id/clinical" />
+        app:layout_constraintTop_toBottomOf="@+id/clinical_button" />
 
     <TextView
         android:id="@+id/textView24"
@@ -143,5 +143,25 @@
         android:text="Next steps:"
         app:layout_constraintEnd_toEndOf="@+id/textView23"
         app:layout_constraintTop_toBottomOf="@+id/funding_source" />
+
+    <Button
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="info"
+        app:layout_constraintEnd_toEndOf="@+id/textView24"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintStart_toStartOf="@+id/textView24"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <ImageView
+        android:id="@+id/google_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        app:layout_constraintStart_toEndOf="@+id/info"
+        app:layout_constraintTop_toTopOf="@+id/info"
+        app:srcCompat="@android:drawable/ic_search_category_default" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

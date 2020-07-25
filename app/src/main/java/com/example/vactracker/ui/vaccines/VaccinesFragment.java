@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,9 +43,13 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class VaccinesFragment extends Fragment {
 
     private VaccineAdapter vaccineAdapter;
+    private VaccineAdapter vaccineAdapter2;
+    private VaccineAdapter vaccineAdapter3;
     private static final String TAG = "Vaccine Fragment";
     private AppDatabase mDb;
     private RecyclerView mRvList;
+    private Button allButton, preclinicalButton, clinicalButton;
+
 
 
     public static String EXTRA_MESSAGE = "id";
@@ -71,6 +77,10 @@ public class VaccinesFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_vaccines, container, false);
 
          mRvList = root.findViewById(R.id.list);
+         allButton = root.findViewById(R.id.all_button);
+         preclinicalButton = root.findViewById(R.id.preclinical_button);
+         clinicalButton = root.findViewById(R.id.clinical_button);
+
 
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -80,6 +90,32 @@ public class VaccinesFragment extends Fragment {
         mRvList.setAdapter(vaccineAdapter);
         setHasOptionsMenu(true);
 
+        preclinicalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vaccineAdapter2 = new VaccineAdapter(mDb.objDAO().getPreclinicalObjs());
+                mRvList.setAdapter(null);
+                mRvList.setAdapter(vaccineAdapter2);
+            }
+        });
+
+        clinicalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vaccineAdapter3 = new VaccineAdapter(mDb.objDAO().getClinicalObjs());
+                mRvList.setAdapter(null);
+                mRvList.setAdapter(vaccineAdapter3);
+            }
+        });
+
+        allButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vaccineAdapter = new VaccineAdapter(mDb.objDAO().getObjs());
+                mRvList.setAdapter(null);
+                mRvList.setAdapter(vaccineAdapter);
+            }
+        });
         return root;
     }
 

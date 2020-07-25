@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onBuild: SUCCESS");
 
                 String filter = "{   \"spec\": {     \"filter\": \"therapyType == 'Vaccine' && target == 'COVID-19'\"} }";
-
+                //String filter = "{   \"spec\": {     \"filter\": \"therapyType == 'Vaccine' \"} }";
                 //Call from the created DataService class can make a HTTP request to the remote C3.ai server.
                 service = retrofit.create(DataService.class);
 

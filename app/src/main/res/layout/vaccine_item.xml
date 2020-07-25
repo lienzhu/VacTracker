@@ -14,15 +14,6 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/product_type"
-            android:layout_width="106dp"
-            android:layout_height="45dp"
-            android:text="Product type"
-            app:layout_constraintBaseline_toBaselineOf="@+id/developer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/developer" />
-
-        <TextView
             android:id="@+id/developer"
             android:layout_width="165dp"
             android:layout_height="96dp"
@@ -39,11 +30,12 @@
             android:id="@+id/stage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:text="Stage"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toEndOf="@+id/developer"
-            app:layout_constraintTop_toBottomOf="@+id/product_type" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
