@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="350dp"
+    android:layout_height="450dp"
+    android:layout_gravity="center"
+    android:background="@color/colorBackgroundBlue"
+    android:maxHeight="450dp"
+    android:orientation="vertical"
+    android:outlineAmbientShadowColor="#23FFFFFF">
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="329dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/bExit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFAQ">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvAnswer"
+                android:layout_width="316dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:lineSpacingExtra="7sp"
+                android:text="The VACTracker App is one-stop-shop for all information relating to the development of the COVID-19 vaccine. The app compiles information from credible news outlets to provide users with access to authentic updates. Our goal is to solve the problem of COVID-19 vaccine information being segregated all over the internet, where reliable sources aren’t always easily accessible. "
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                tools:layout_conversion_absoluteHeight="205dp"
+                tools:layout_conversion_absoluteWidth="300dp"
+                tools:textSize="18sp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tvFAQ"
+        android:layout_width="308dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="5dp"
+        android:text="WHAT IS THE VACTRACKER APP?"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="24dp"
+        tools:layout_conversion_absoluteWidth="276dp" />
+
+    <Button
+        android:id="@+id/bExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="EXIT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
