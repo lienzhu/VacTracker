@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -19,5 +20,58 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/tvQ1"
+        android:layout_width="332dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="36dp"
+        android:text="What is the VACTracker App?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_development" />
 
+    <Button
+        android:id="@+id/tvQ2"
+        android:layout_width="332dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="36dp"
+        android:text="Where is the information from?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvQ1" />
+
+    <Button
+        android:id="@+id/tvQ3"
+        android:layout_width="332dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="36dp"
+        android:text="What do the clinical trials mean and how do they work?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvQ2" />
+
+    <Button
+        android:id="@+id/tvQ4"
+        android:layout_width="332dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="36dp"
+        android:text="How do pandemics like COVID 19 impact the clinical trials process?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvQ3" />
+
+    <Button
+        android:id="@+id/tvQ5"
+        android:layout_width="332dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="36dp"
+        android:text="How can I provide feedback about this tracker?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvQ4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
