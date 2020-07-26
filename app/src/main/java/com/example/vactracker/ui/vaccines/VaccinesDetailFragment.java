@@ -1,5 +1,6 @@
 package com.example.vactracker.ui.vaccines;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
 import com.example.vactracker.AppDatabase;
+
 import com.example.vactracker.R;
 import com.example.vactracker.ui.DataService;
 import com.example.vactracker.ui.data.Obj;
@@ -125,6 +127,8 @@ public class VaccinesDetailFragment extends Fragment {
             }
         });
 
+
+        getActivity().setTitle(vaccineObject.getDeveloper());
 
 
         Log.d(TAG, "onCreateView: Success 2");

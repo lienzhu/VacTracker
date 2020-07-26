@@ -82,7 +82,6 @@ public class VaccinesFragment extends Fragment {
 
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
         vaccineAdapter = new VaccineAdapter(mDb.objDAO().getObjs());
 
         mRvList.setAdapter(vaccineAdapter);
@@ -91,8 +90,9 @@ public class VaccinesFragment extends Fragment {
         preclinicalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vaccineAdapter = new VaccineAdapter(mDb.objDAO().getPreclinicalObjs());
                 mRvList.setAdapter(null);
+                vaccineAdapter = new VaccineAdapter(mDb.objDAO().getPreclinicalObjs());
+
                 mRvList.setAdapter(vaccineAdapter);
             }
         });
@@ -100,8 +100,9 @@ public class VaccinesFragment extends Fragment {
         clinicalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vaccineAdapter = new VaccineAdapter(mDb.objDAO().getClinicalObjs());
                 mRvList.setAdapter(null);
+                vaccineAdapter = new VaccineAdapter(mDb.objDAO().getClinicalObjs());
+
                 mRvList.setAdapter(vaccineAdapter);
             }
         });
@@ -109,11 +110,14 @@ public class VaccinesFragment extends Fragment {
         allButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vaccineAdapter = new VaccineAdapter(mDb.objDAO().getObjs());
                 mRvList.setAdapter(null);
+                vaccineAdapter = new VaccineAdapter(mDb.objDAO().getObjs());
+
                 mRvList.setAdapter(vaccineAdapter);
             }
         });
+
+
         return root;
     }
 
