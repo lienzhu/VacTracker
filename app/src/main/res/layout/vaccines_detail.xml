@@ -4,28 +4,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundBlue">
 
     <TextView
         android:id="@+id/next_steps"
-        android:layout_width="150dp"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:text="next steps"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView24"
         app:layout_constraintEnd_toEndOf="@+id/funding_source" />
 
     <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Other diseases:"
-        app:layout_constraintEnd_toEndOf="@+id/textView21"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-    <TextView
         android:id="@+id/description"
-        android:layout_width="150dp"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:text="description"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView18"
@@ -33,31 +25,23 @@
 
     <TextView
         android:id="@+id/origin"
-        android:layout_width="150dp"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:text="origin"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView21"
-        app:layout_constraintEnd_toEndOf="@+id/stage" />
+        app:layout_constraintEnd_toEndOf="@+id/developer" />
 
     <TextView
         android:id="@+id/developer"
-        android:layout_width="150dp"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:text="developer"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView19"
         app:layout_constraintEnd_toEndOf="@+id/description" />
 
     <TextView
-        android:id="@+id/stage"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="stage"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView20"
-        app:layout_constraintEnd_toEndOf="@+id/developer" />
-
-    <TextView
         android:id="@+id/clinical_button"
-        android:layout_width="150dp"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:text="clinical"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView22"
@@ -65,7 +49,7 @@
 
     <TextView
         android:id="@+id/funding_source"
-        android:layout_width="150dp"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:text="funding source"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView23"
@@ -73,39 +57,34 @@
 
     <TextView
         android:id="@+id/product_type"
-        android:layout_width="150dp"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:text="product type"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView17"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.245"
         app:layout_constraintStart_toEndOf="@+id/textView17" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Description:"
-        app:layout_constraintEnd_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toBottomOf="@+id/product_type" />
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="16dp"
+        android:text="Product type:"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Developers:"
-        app:layout_constraintEnd_toEndOf="@+id/textView18"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Stage:"
-        app:layout_constraintEnd_toEndOf="@+id/textView19"
-        app:layout_constraintTop_toBottomOf="@+id/developer" />
+        android:text="Other diseases:"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView21"
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
     <TextView
         android:id="@+id/textView21"
@@ -113,27 +92,29 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Origin:"
-        app:layout_constraintEnd_toEndOf="@+id/textView20"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView19"
+        app:layout_constraintTop_toBottomOf="@+id/developer" />
 
     <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="272dp"
-        android:text="Product type:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Funding source:"
-        app:layout_constraintEnd_toEndOf="@+id/textView22"
-        app:layout_constraintTop_toBottomOf="@+id/clinical_button" />
+        android:text="Developers:"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/description" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Description:"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/product_type" />
 
     <TextView
         android:id="@+id/textView24"
@@ -141,27 +122,99 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Next steps:"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textView23"
         app:layout_constraintTop_toBottomOf="@+id/funding_source" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Funding source:"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView22"
+        app:layout_constraintTop_toBottomOf="@+id/clinical_button" />
 
     <Button
         android:id="@+id/info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="68dp"
         android:text="info"
-        app:layout_constraintEnd_toEndOf="@+id/textView24"
-        app:layout_constraintHorizontal_bias="0.277"
-        app:layout_constraintStart_toStartOf="@+id/textView24"
-        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/next_steps" />
 
-    <ImageView
+    <androidx.cardview.widget.CardView
+
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="Stage:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/stage"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="stage"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView20"
+                app:layout_constraintStart_toEndOf="@+id/textView20" />
+
+            <ImageView
+                android:id="@+id/stagedev_icon"
+                android:layout_width="63dp"
+                android:layout_height="63dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/stage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/clinical" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/google_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        app:layout_constraintStart_toEndOf="@+id/info"
-        app:layout_constraintTop_toTopOf="@+id/info"
-        app:srcCompat="@android:drawable/ic_search_category_default" />
+        android:clickable="true"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.928"
+        app:srcCompat="@drawable/google" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

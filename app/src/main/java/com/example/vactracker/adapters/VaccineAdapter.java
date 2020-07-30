@@ -56,13 +56,16 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
         private TextView developer;
         private TextView stage;
         public View view;
+        private ImageView stageIcon;
 
         public VaccineHolder(View itemView) {
             super(itemView);
 
             developer = itemView.findViewById(R.id.developer);
             stage = itemView.findViewById(R.id.stage);
+            stageIcon = itemView.findViewById(R.id.stage_icon);
             view = itemView;
+
 
         }
 
@@ -77,11 +80,16 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
 
 
         holder.developer.setText(currentObj.getDeveloper());
-        holder.stage.setText(currentObj.getStageOfDevelopment().toUpperCase());
+        holder.stage.setText(currentObj.getStageOfDevelopment());
 
-        if(currentObj.getStageOfDevelopment() == "Pre-clincial" || currentObj.getStageOfDevelopment() == "Pre-Clincial"){
-            holder.stage.setText("PRE-CLINICAL");
+        if(currentObj.getStageOfDevelopment().equals("Pre-clincial") || currentObj.getStageOfDevelopment().equals("Pre-Clincial") || currentObj.getStageOfDevelopment().equals("Pre-clinical") || currentObj.getStageOfDevelopment().equals("Pre-Clinical")){
+            holder.stageIcon.setImageResource(holder.itemView.getResources().getIdentifier("preclinical","drawable","com.example.vactracker"));
+            holder.stage.setText("Pre-clinical");
+        } else {
+            holder.stageIcon.setImageResource(holder.itemView.getResources().getIdentifier("clinical","drawable","com.example.vactracker"));
         }
+
+
 
         holder.view.setOnClickListener(new View.OnClickListener(){
 

@@ -22,6 +22,7 @@ import com.example.vactracker.AppDatabase;
 import com.example.vactracker.R;
 import com.example.vactracker.ui.DataService;
 import com.example.vactracker.ui.data.Obj;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class VaccinesDetailFragment extends Fragment {
 
@@ -29,7 +30,7 @@ public class VaccinesDetailFragment extends Fragment {
     private Obj vaccineObject;
     private static final String TAG = "Vaccine Detail";
     private AppDatabase mDb;
-    private ImageView googleSearch;
+    private FloatingActionButton googleSearch;
     DataService service;
 
     public VaccinesDetailFragment() {
