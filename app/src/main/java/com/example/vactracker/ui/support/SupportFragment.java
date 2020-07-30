@@ -51,7 +51,7 @@ public class SupportFragment extends Fragment {
             public void onClick(View view) {
                 if (cardForm.isValid()) {
                     alertBuilder = new AlertDialog.Builder(getActivity());
-                    alertBuilder.setTitle("Confirm before purchase");
+                    alertBuilder.setTitle("Confirm before donating");
                     alertBuilder.setMessage("Card number: " + cardForm.getCardNumber() + "\n" +
                             "Card expiry date: " + cardForm.getExpirationDateEditText().getText().toString() + "\n" +
                             "Card CVV: " + cardForm.getCvv() + "\n" +
@@ -61,7 +61,7 @@ public class SupportFragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();
-                            Toast.makeText(getActivity(), "Thank you for purchase", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Thank you for your donation!", Toast.LENGTH_LONG).show();
                         }
                     });
                     alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
