@@ -1,5 +1,7 @@
 package com.example.vactracker.ui.faq;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +20,7 @@ public class Faqpopup1 extends DialogFragment {
 
     private static final String TAG = "done";
     TextView tvClose, tvFAQ, tvAnswer;
-    Button bExit;
+    Button bExit, bDonate;
 
     private Faqpopup1ViewModel mViewModel;
 
@@ -35,6 +37,17 @@ public class Faqpopup1 extends DialogFragment {
         tvAnswer = view.findViewById(R.id.tvAnswer);
 
         bExit = view.findViewById(R.id.bExit);
+        bDonate = view.findViewById(R.id.bDonate);
+        bDonate.setVisibility(View.GONE);
+
+        bDonate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://www.who.int/emergencies/diseases/novel-coronavirus-2019/donate");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
 
         String value = getArguments().getString("Key");
 
@@ -89,7 +102,20 @@ public class Faqpopup1 extends DialogFragment {
                     "As it generally takes years or even as long as decades for the compound to progress through the clinical trials, the process can be fast-tracked to provide medical assistance to those in need. This is usually done for drugs that already display strong potential in combating the disease as they are already effective against related disorders. \n" +
                     "\n" +
                     "To progress faster through the stages, the process will involve more frequent meetings with governing bodies as well as the drug manufacturing company must submit the sections of crucial documents as soon as they are completed as opposed to one submission for every completed stage of the trial. Although this process is fast-tracked, the entire process is still extremely rigorous.\n");
-        } else if (value == "Q5"){
+        } else if(value == "Q5") {
+            tvFAQ.setText("What is the meaning of each heading on the Vaccine Profile?");
+            tvAnswer.setText("Product Type: Vaccine's drug or platform class \n \n" +
+                    "Description: Short description of the vaccine \n \n" +
+                    "Developer(s): The organisation(s) developing the vaccine \n \n " +
+                    "Stage: The current phase of clinical development \n \n" +
+                    "Origin: The source of the data containing the vaccine's research and development details. \n \n " +
+                    "Other diseases: Other diseases or pathogens for which the vaccine has undergone or is undergoing clinical developmnent.");
+        } else if(value == "Q6") {
+                tvFAQ.setText("How can I help?");
+                tvAnswer.setText("You can donate on our support page. All proceeds will go to the World Health Organisation's COVID-19 Response Fund" +
+                        "to go toward the development and distribution of a vaccine. \n \nFor further information regarding the COVID-19 Response Fund, please click the button below.");
+            bDonate.setVisibility(View.VISIBLE);
+        } else if (value == "Q7"){
             tvFAQ.setText("How can I provide feedback about this tracker?");
             tvAnswer.setText("We appreciate your use of our vaccine tracker! If you wish to provide us with any feedback in regards to the content, bugs, issues or any suggestions for improvement, please email us at vaccinetracker@DMTechnology.com. Any feedback is welcome!\n");
         }

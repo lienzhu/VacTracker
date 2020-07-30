@@ -20,58 +20,74 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/tvQ1"
-        android:layout_width="332dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="36dp"
-        android:text="What is the VACTracker App?"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_development" />
 
-    <Button
-        android:id="@+id/tvQ2"
-        android:layout_width="332dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="36dp"
-        android:text="Where is the information from?"
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvQ1" />
+        app:layout_constraintTop_toBottomOf="@+id/text_development"
+        app:layout_constraintVertical_bias="0.0">
 
-    <Button
-        android:id="@+id/tvQ3"
-        android:layout_width="332dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="36dp"
-        android:text="What do the clinical trials mean and how do they work?"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvQ2" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/tvQ4"
-        android:layout_width="332dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="36dp"
-        android:text="How do pandemics like COVID 19 impact the clinical trials process?"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvQ3" />
+            <Button
+                android:id="@+id/tvQ1"
+                android:layout_width="332dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="15dp"
+                android:text="What is the VACTracker App?" />
 
-    <Button
-        android:id="@+id/tvQ5"
-        android:layout_width="332dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="36dp"
-        android:text="How can I provide feedback about this tracker?"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvQ4" />
+            <Button
+                android:id="@+id/tvQ2"
+                android:layout_width="332dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="20dp"
+                android:text="Where is the information from?" />
+
+            <Button
+                android:id="@+id/tvQ3"
+                android:layout_width="332dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="20dp"
+                android:text="What do the clinical trials mean and how do they work?" />
+
+            <Button
+                android:id="@+id/tvQ5"
+                android:layout_width="332dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="20dp"
+                android:text="What is the meaning of each heading on the Vaccine Profiles?" />
+
+            <Button
+                android:id="@+id/tvQ4"
+                android:layout_width="332dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="20dp"
+                android:text="How do pandemics like COVID 19 impact the clinical trials process?" />
+
+            <Button
+                android:id="@+id/tvQ6"
+                android:layout_width="332dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="20dp"
+                android:text="How can I help?" />
+
+            <Button
+                android:id="@+id/tvQ7"
+                android:layout_width="332dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="20dp"
+                android:text="How can I provide feedback about this tracker?" />
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

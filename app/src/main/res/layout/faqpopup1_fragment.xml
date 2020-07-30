@@ -24,6 +24,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvFAQ">
 
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
@@ -49,6 +51,8 @@
                 tools:layout_conversion_absoluteHeight="205dp"
                 tools:layout_conversion_absoluteWidth="300dp"
                 tools:textSize="18sp" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
@@ -71,12 +75,22 @@
 
     <Button
         android:id="@+id/bExit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="84dp"
+        android:layout_height="39dp"
         android:layout_marginBottom="16dp"
         android:text="EXIT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/bDonate"
+        android:layout_width="84dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="16dp"
+        android:text="DONATE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bExit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
