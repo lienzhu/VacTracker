@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F2F8FD"
+    android:backgroundTint="#F2F8FD"
     tools:context=".ui.support.SupportFragment">
 
     <TextView
@@ -29,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
 
+        android:background="#F2F8FD"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
@@ -39,6 +42,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="32dp"
         android:background="@color/colorAccent"
+        android:backgroundTint="#776FFF"
         android:marqueeRepeatLimit="marquee_forever"
         android:text="DONATE"
         android:textColor="@android:color/white"
