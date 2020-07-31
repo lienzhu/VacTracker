@@ -28,7 +28,7 @@
             android:layout_width="298dp"
             android:layout_height="56dp"
             android:layout_marginTop="40dp"
-            android:text="languages"
+            android:text="english"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
             android:layout_width="298dp"
             android:layout_height="56dp"
             android:layout_marginTop="20dp"
-            android:text="notifications"
+            android:text="中文"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,7 @@
             android:layout_width="298dp"
             android:layout_height="56dp"
             android:layout_marginTop="20dp"
-            android:text="Term of use"
+            android:text="Tiếng Việt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
@@ -60,22 +60,34 @@
             android:layout_width="298dp"
             android:layout_height="56dp"
             android:layout_marginTop="20dp"
-            android:text="Privacy"
+            android:text="Española"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/b3" />
 
         <Button
-            android:id="@+id/b"
+            android:id="@+id/b5"
             android:layout_width="298dp"
             android:layout_height="56dp"
             android:layout_marginTop="20dp"
-            android:text="About Us"
+            android:text="Français "
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/b4" />
+
+        <Button
+            android:id="@+id/b6"
+            android:layout_width="298dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="20dp"
+            android:text="Pусский"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/b5" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -83,9 +95,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="Settings"
+        android:text="Language"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
