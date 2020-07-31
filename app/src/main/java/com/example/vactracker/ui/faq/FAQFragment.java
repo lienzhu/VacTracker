@@ -17,7 +17,7 @@ import com.example.vactracker.R;
 public class FAQFragment extends Fragment {
 
     TextView f;
-    Button faq1, faq2, faq3, faq4, faq5;
+    Button faq1, faq2, faq3, faq4, faq5, faq6, faq7;
 
 
    FAQViewModel faqViewModel;
@@ -39,9 +39,12 @@ public class FAQFragment extends Fragment {
         faq3 = root.findViewById(R.id.tvQ3);
         faq4 = root.findViewById(R.id.tvQ4);
         faq5 = root.findViewById(R.id.tvQ5);
+        faq6 = root.findViewById(R.id.tvQ6);
+        faq7 = root.findViewById(R.id.tvQ7);
 
 
-                faq1.setOnClickListener(new View.OnClickListener() {
+
+        faq1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -116,6 +119,33 @@ public class FAQFragment extends Fragment {
             }
         });
 
+        faq6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Faqpopup1 popup = new Faqpopup1();
+                Bundle args = new Bundle();
+                args.putString("Key","Q6");
+                popup.setArguments(args);
+                popup.setTargetFragment(FAQFragment.this, 1);
+                popup.show(getFragmentManager(), "Faqpopup1");
+
+            }
+        });
+
+        faq7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Faqpopup1 popup = new Faqpopup1();
+                Bundle args = new Bundle();
+                args.putString("Key","Q7");
+                popup.setArguments(args);
+                popup.setTargetFragment(FAQFragment.this, 1);
+                popup.show(getFragmentManager(), "Faqpopup1");
+
+            }
+        });
         return root;
     }
 }
