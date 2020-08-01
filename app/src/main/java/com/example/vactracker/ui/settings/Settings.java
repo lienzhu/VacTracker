@@ -1,7 +1,6 @@
 package com.example.vactracker.ui.settings;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.vactracker.R;
 
@@ -35,10 +35,10 @@ public class Settings extends Fragment {
             @Override
             public void onClick(View view) {
                 Language x = new Language();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.layout.fragment_settings, x, "findThisFragment")
-                        .addToBackStack(null)
-                        .commit();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container_view_tag, x, "Fragment Name");
+                transaction.commit();
+
 
             }
         });
@@ -53,6 +53,11 @@ public class Settings extends Fragment {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                TermsOfUse fragment = new TermsOfUse();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container_view_tag, fragment, "Fragment Name");
+                transaction.commit();
+
 
             }
         });
@@ -60,14 +65,20 @@ public class Settings extends Fragment {
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Privacy fragment = new Privacy();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container_view_tag, fragment, "Fragment Name");
+                transaction.commit();
             }
         });
 
         b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                AboutUs fragment = new AboutUs();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container_view_tag, fragment, "Fragment Name");
+                transaction.commit();
             }
         });
 
