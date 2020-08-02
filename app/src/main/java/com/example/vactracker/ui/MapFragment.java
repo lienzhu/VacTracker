@@ -76,6 +76,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         GoogleMap mMap = googleMap;
         LatLng address = getLocationFromAddress(getActivity().getApplicationContext(), "107, Virgil Ave, Chester Hill, NSW, 2162");
         //LatLng address = getLocationFromAddress(getActivity().getApplicationContext(), "Street Number, Street, Suburb, State, Postcode");
+        if (address==null){
+            String[] latlong =  "-33.8807699,150.99844460000003".split(",");
+            double latitude = Double.parseDouble(latlong[0]);
+            double longitude = Double.parseDouble(latlong[1]);
+            LatLng locationDef = new LatLng(latitude, longitude);
+            address = locationDef;
+        }
         mMap.addMarker(new MarkerOptions().position(address).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(address));
 
@@ -97,12 +104,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             //address = coder.getFromLocationName(strAddress, 5);
             address = coder.getFromLocationName(strAddress, 5);
             if (address == null) {
-                return locationDef;
+                return (locationDef);
             }
 
             Address location = address.get(0);
             p1 = new LatLng(location.getLatitude(), location.getLongitude() );
-
+            if (p1 == null) {
+                p1=locationDef;
+            }
         } catch (IOException ex) {
 
             ex.printStackTrace();
