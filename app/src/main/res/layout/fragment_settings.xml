@@ -10,8 +10,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
-        android:layout_width="352dp"
-        android:layout_height="539dp"
+        android:layout_width="354dp"
+        android:layout_height="519dp"
         android:background="@color/colorBackgroundBlue"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,14 +25,13 @@
         android:layout_width="347dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="48dp"
         android:elevation="5dp"
         android:fadingEdge="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/cardView3"
         app:layout_constraintEnd_toEndOf="@+id/textView27"
         app:layout_constraintHorizontal_bias="0.574"
         app:layout_constraintStart_toStartOf="@+id/textView27"
-        app:layout_constraintTop_toBottomOf="@+id/textView27">
+        app:layout_constraintTop_toTopOf="@+id/cardView3">
 
 
         <Button
