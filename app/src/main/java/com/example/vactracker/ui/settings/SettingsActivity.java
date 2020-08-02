@@ -12,7 +12,8 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        if (savedInstanceState == null) {
+
+        if(savedInstanceState == null);
 //            Bundle arguments = new Bundle();
 //            arguments.putString(DetailFragment.ARG_ITEM_ID, getIntent().getStringExtra(DetailFragment.ARG_ITEM_ID));
             Settings fragment = new Settings();
@@ -22,4 +23,4 @@ public class SettingsActivity extends AppCompatActivity {
                     .commit();
         }
     }
-}
+
