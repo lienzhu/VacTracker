@@ -1,5 +1,6 @@
 package com.example.vactracker.ui.vaccines;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -17,9 +18,11 @@ import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
 import com.example.vactracker.AppDatabase;
+
 import com.example.vactracker.R;
 import com.example.vactracker.ui.DataService;
 import com.example.vactracker.ui.data.Obj;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class VaccinesDetailFragment extends Fragment {
 
@@ -27,7 +30,7 @@ public class VaccinesDetailFragment extends Fragment {
     private Obj vaccineObject;
     private static final String TAG = "Vaccine Detail";
     private AppDatabase mDb;
-    private ImageView googleSearch;
+
     DataService service;
 
     public VaccinesDetailFragment() {
@@ -46,21 +49,11 @@ public class VaccinesDetailFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.vaccines_detail, container, false);
-        Button info = root.findViewById(R.id.info);
-        googleSearch = root.findViewById(R.id.google_search);
-        info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), PopInfo.class));
-            }
-        });
 
 
 
-//        if(getArguments().containsKey(String.valueOf(VaccinesFragment.EXTRA_MESSAGE))){
-//            new GetVaccineDBTask().execute(getArguments().getString(String.valueOf(EXTRA_MESSAGE)));
-//            Log.d(TAG, "onCreate: Success");
-//        }
+
+
         Intent intent = getActivity().getIntent();
         String id = intent.getStringExtra(VaccinesFragment.EXTRA_MESSAGE);
         vaccineObject = mDb.objDAO().getObj(id);
@@ -85,11 +78,7 @@ public class VaccinesDetailFragment extends Fragment {
             ((TextView) root.findViewById(R.id.developer)).setText(vaccineObject.getDeveloper());
         }
 
-        if(vaccineObject.getStageOfDevelopment() == null) {
-            ((TextView) root.findViewById(R.id.stage)).setText("Unknown");
-        } else {
-            ((TextView) root.findViewById(R.id.stage)).setText(vaccineObject.getStageOfDevelopment());
-        }
+
 
         if(vaccineObject.getOrigin() == null) {
             ((TextView) root.findViewById(R.id.origin)).setText("Unknown");
@@ -118,23 +107,17 @@ public class VaccinesDetailFragment extends Fragment {
         }
 
 
-        googleSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchVaccine(vaccineObject.getDeveloper());
-            }
-        });
 
+
+
+        getActivity().setTitle(vaccineObject.getDeveloper());
 
 
         Log.d(TAG, "onCreateView: Success 2");
         return root;
     }
 
-    private void searchVaccine(String name) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=" + name + " COVID-19 vaccine"));
-        startActivity(intent);
-    }
+
 
 
     private class GetVaccineDBTask extends AsyncTask<String, Void, Obj> {

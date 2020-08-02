@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackgroundBlue"
     tools:context=".ui.vaccines.VaccinesFragment">
 
     <ScrollView
         android:layout_width="413dp"
         android:layout_height="613dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/all_button">
 
@@ -21,7 +22,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list"
-                android:layout_width="403dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp" />
         </LinearLayout>
@@ -54,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:text="clinical"
+
         app:layout_constraintBaseline_toBaselineOf="@+id/all_button"
         app:layout_constraintStart_toEndOf="@+id/all_button" />
 
