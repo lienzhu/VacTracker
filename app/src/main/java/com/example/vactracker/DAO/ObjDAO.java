@@ -29,6 +29,15 @@ public interface ObjDAO {
     @Query("SELECT COUNT(id) FROM obj")
     int getTotal();
 
+    @Query("SELECT COUNT(id) FROM obj WHERE nextSteps LIKE '%Phase 4%' ")
+    int getCountDNA();
+
+    @Query("UPDATE obj SET productType=:productType WHERE id = :id")
+    void updateProductType(String productType, String id);
+
+    @Query("SELECT COUNT(id) FROM obj WHERE productType=:productType")
+    int getCountProductType(String productType);
+
     @Insert
     void insertAll(Obj... objs);
 
