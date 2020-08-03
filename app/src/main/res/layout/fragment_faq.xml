@@ -21,73 +21,97 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <ScrollView
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        app:cardBackgroundColor="@color/colorBackgroundBlue"
+        app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_development"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/text_development">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/tvQ1"
-                android:layout_width="332dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="15dp"
-                android:text="What is the VACTracker App?" />
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/tvQ2"
-                android:layout_width="332dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="20dp"
-                android:text="Where is the information from?" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <Button
-                android:id="@+id/tvQ3"
-                android:layout_width="332dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="20dp"
-                android:text="What do the clinical trials mean and how do they work?" />
+                    <Button
+                        android:id="@+id/tvQ1"
+                        android:layout_width="332dp"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/colorBackgroundBlue"
+                        android:text="What is the VACTracker App?" />
 
-            <Button
-                android:id="@+id/tvQ5"
-                android:layout_width="332dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="20dp"
-                android:text="What is the meaning of each heading on the Vaccine Profiles?" />
+                    <Button
+                        android:id="@+id/tvQ2"
+                        android:layout_width="332dp"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/colorBackgroundBlue"
+                        android:text="Where is the information from?" />
 
-            <Button
-                android:id="@+id/tvQ4"
-                android:layout_width="332dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="20dp"
-                android:text="How do pandemics like COVID 19 impact the clinical trials process?" />
+                    <Button
+                        android:id="@+id/tvQ3"
+                        android:layout_width="332dp"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/colorBackgroundBlue"
+                        android:text="What do the clinical trials mean and how do they work?" />
 
-            <Button
-                android:id="@+id/tvQ6"
-                android:layout_width="332dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="20dp"
-                android:text="How can I help?" />
+                    <Button
+                        android:id="@+id/tvQ5"
+                        android:layout_width="332dp"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/colorBackgroundBlue"
+                        android:text="What is the meaning of each heading on the Vaccine Profiles?" />
 
-            <Button
-                android:id="@+id/tvQ7"
-                android:layout_width="332dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="20dp"
-                android:text="How can I provide feedback about this tracker?" />
+                    <Button
+                        android:id="@+id/tvQ4"
+                        android:layout_width="332dp"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/colorBackgroundBlue"
+                        android:text="How do pandemics like COVID 19 impact the clinical trials process?" />
+
+                    <Button
+                        android:id="@+id/tvQ6"
+                        android:layout_width="332dp"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/colorBackgroundBlue"
+                        android:text="How can I help?" />
+
+                    <Button
+                        android:id="@+id/tvQ7"
+                        android:layout_width="332dp"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/colorBackgroundBlue"
+                        android:text="How can I provide feedback about this tracker?" />
 
 
-
-        </LinearLayout>
-    </ScrollView>
+                </LinearLayout>
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

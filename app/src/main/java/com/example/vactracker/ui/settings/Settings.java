@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.vactracker.R;
 
@@ -35,9 +34,11 @@ public class Settings extends Fragment {
             @Override
             public void onClick(View view) {
                 Language x = new Language();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container_view_tag, x, "Fragment Name");
-                transaction.commit();
+                Bundle args = new Bundle();
+                args.putString("Key","Q3");
+                x.setArguments(args);
+                x.setTargetFragment(Settings.this, 1);
+                x.show(getFragmentManager(), "Faqpopup1");
 
 
             }
@@ -53,11 +54,9 @@ public class Settings extends Fragment {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TermsOfUse fragment = new TermsOfUse();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container_view_tag, fragment, "Fragment Name");
-                transaction.commit();
-
+                TermsOfUse x = new TermsOfUse();
+                x.setTargetFragment(Settings.this, 1);
+                x.show(getFragmentManager(), "Faqpopup1");
 
             }
         });
@@ -65,20 +64,20 @@ public class Settings extends Fragment {
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Privacy fragment = new Privacy();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container_view_tag, fragment, "Fragment Name");
-                transaction.commit();
+                Privacy x = new Privacy();
+                x.setTargetFragment(Settings.this, 1);
+                x.show(getFragmentManager(), "Faqpopup1");
+
             }
         });
 
         b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AboutUs fragment = new AboutUs();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container_view_tag, fragment, "Fragment Name");
-                transaction.commit();
+                AboutUs x = new AboutUs();
+                x.setTargetFragment(Settings.this, 1);
+                x.show(getFragmentManager(), "Faqpopup1");
+
             }
         });
 
