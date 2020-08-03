@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,14 @@ public class HomeFragment extends Fragment {
     private TextView tvNumberVaccines;
     private TextView tvNumberVaccinesClinical;
     private TextView tvDate;
+
+    private TextView tvVaccineName;
+    private TextView tvVaccineDescription;
+    private Button buttonVaccine1;
+    private Button buttonVaccine2;
+    private Button buttonVaccine3;
+    private Button buttonVaccine4;
+
     private RecyclerView rvNews;
     private NewsAdapter mAdapter;
     private List<Article> article;
@@ -89,6 +98,44 @@ public class HomeFragment extends Fragment {
         tvNumberVaccines.setText(String.valueOf(mDb.objDAO().getTotal()));
         tvNumberVaccinesClinical.setText(String.valueOf(mDb.objDAO().getClinicalTotal()));
 
+        tvVaccineName = root.findViewById(R.id.tvVaccineName);
+        tvVaccineDescription = root.findViewById(R.id.tvVaccineDescription);
+        buttonVaccine1 = root.findViewById(R.id.buttonVaccine1);
+        buttonVaccine2 = root.findViewById(R.id.buttonVaccine2);
+        buttonVaccine3 = root.findViewById(R.id.buttonVaccine3);
+        buttonVaccine4 = root.findViewById(R.id.buttonVaccine4);
+
+        tvVaccineName.setText("Oral Polio Vaccine (Phase III)");
+        tvVaccineDescription.setText("The oral polio vaccine is an attenuated strain of the virus that causes poliomyelitis.");
+
+        buttonVaccine1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvVaccineName.setText("Oral Polio Vaccine (Phase III)");
+                tvVaccineDescription.setText("The oral polio vaccine is an attenuated strain of the virus that causes poliomyelitis.");
+            }
+        });
+        buttonVaccine2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvVaccineName.setText("Bacille Calmette-Guerin (Phase III)");
+                tvVaccineDescription.setText("The Bacille Calmette-Guerin is a live attenuated vaccine comprised of the bacteria that causes bovine tuberculosis.");
+            }
+        });
+        buttonVaccine3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvVaccineName.setText("Measles-Mumps-Rubella Vaccine (Phase III)");
+                tvVaccineDescription.setText("The measles-mumps-rubella (MMR) vaccine is comprised of live-attenuated strains of these viruses.");
+            }
+        });
+        buttonVaccine4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvVaccineName.setText("IMM-101 (Phase III)");
+                tvVaccineDescription.setText("IMM-101 is a vaccine comprised of heat-killed Mycobacterium obuense.");
+            }
+        });
 
         //API Methods - Newsfeed
         //Retrofit converts the HTTP API into a Java interface
@@ -140,6 +187,8 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
+
+
 
 
 
