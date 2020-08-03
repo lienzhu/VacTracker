@@ -4,231 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/development_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/text_faq"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Overview"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="0dp"
-        android:layout_height="425dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_development">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="Leading Candidates"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="75dp"
-            android:text="I"
-            app:layout_constraintEnd_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:text="II"
-            app:layout_constraintStart_toEndOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="@+id/textView3" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:text="III"
-            app:layout_constraintStart_toEndOf="@+id/textView4"
-            app:layout_constraintTop_toTopOf="@+id/textView4" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:text="IV"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
-            app:layout_constraintTop_toTopOf="@+id/textView5" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:text="RR"
-            app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toTopOf="@+id/textView9" />
-
-        <ProgressBar
-            android:id="@+id/progressBar1"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="22dp"
-            android:layout_marginTop="25dp"
-            android:max="5"
-            app:layout_constraintEnd_toEndOf="@+id/textView10"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <TextView
-            android:id="@+id/tvCandidate1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Vaccine 1"
-            app:layout_constraintStart_toStartOf="@+id/progressBar1"
-            app:layout_constraintTop_toBottomOf="@+id/progressBar1" />
-
-        <ProgressBar
-            android:id="@+id/progressBar2"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:max="5"
-            app:layout_constraintEnd_toEndOf="@+id/progressBar1"
-            app:layout_constraintStart_toStartOf="@+id/progressBar1"
-            app:layout_constraintTop_toBottomOf="@+id/tvCandidate1" />
-
-        <TextView
-            android:id="@+id/tvCandidate2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Vaccine 2"
-            app:layout_constraintStart_toStartOf="@+id/progressBar2"
-            app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
-
-        <ProgressBar
-            android:id="@+id/progressBar3"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:max="5"
-            app:layout_constraintEnd_toEndOf="@+id/progressBar2"
-            app:layout_constraintStart_toStartOf="@+id/progressBar2"
-            app:layout_constraintTop_toBottomOf="@+id/tvCandidate2" />
-
-        <ProgressBar
-            android:id="@+id/progressBar4"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:max="5"
-            app:layout_constraintEnd_toEndOf="@+id/progressBar3"
-            app:layout_constraintStart_toStartOf="@+id/tvCandidate3"
-            app:layout_constraintTop_toBottomOf="@+id/tvCandidate3" />
-
-        <ProgressBar
-            android:id="@+id/progressBar5"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:max="5"
-            app:layout_constraintEnd_toEndOf="@+id/progressBar4"
-            app:layout_constraintStart_toStartOf="@+id/tvCandidate4"
-            app:layout_constraintTop_toBottomOf="@+id/tvCandidate4" />
-
-        <TextView
-            android:id="@+id/tvCandidate3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Vaccine 3"
-            app:layout_constraintStart_toStartOf="@+id/progressBar3"
-            app:layout_constraintTop_toBottomOf="@+id/progressBar3" />
-
-        <TextView
-            android:id="@+id/tvCandidate4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Vaccine 4"
-            app:layout_constraintStart_toStartOf="@+id/progressBar4"
-            app:layout_constraintTop_toBottomOf="@+id/progressBar4" />
-
-        <TextView
-            android:id="@+id/tvCandidate5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Vaccine 5"
-            app:layout_constraintStart_toStartOf="@+id/progressBar5"
-            app:layout_constraintTop_toBottomOf="@+id/progressBar5" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    android:layout_height="match_parent"
+    android:background="#F2F8FD">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="180dp"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="25dp"
+        android:background="@drawable/layout_bg_white"
+        android:elevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout9"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout9"
+        app:layout_constraintVertical_bias="0.0">
 
         <ProgressBar
             android:id="@+id/progressBarCircle"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="200dp"
             android:fromDegrees="270"
             android:progressDrawable="@drawable/circular_progressbar"
-            android:progressTint="#7FD7FF"
+            android:progressTint="#776FFF"
             android:rotation="-90"
             android:toDegrees="270"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/tvVaccineType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sfprodisplay_medium"
             android:text="Vaccine Type"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/progressBarCircle" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="of total vaccines"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvVaccineTypeValue" />
@@ -237,7 +63,9 @@
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
             android:text="%"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/tvVaccineTypeValue"
             app:layout_constraintStart_toEndOf="@+id/tvVaccineTypeValue" />
 
@@ -245,9 +73,9 @@
             android:id="@+id/tvVaccineTypeValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="80dp"
             android:text="34"
-            android:textSize="40sp"
+            android:textSize="45sp"
             app:layout_constraintEnd_toEndOf="@+id/tvVaccineType"
             app:layout_constraintStart_toStartOf="@+id/tvVaccineType"
             app:layout_constraintTop_toTopOf="parent" />
@@ -258,21 +86,241 @@
         android:id="@+id/constraintLayout4"
         android:layout_width="180dp"
         android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:background="@drawable/layout_bg_white"
+        android:elevation="3dp"
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout3"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout9"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout3">
+
+        <TextView
+            android:id="@+id/tvVaccineType2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sfprodisplay_medium"
+            android:text="Vaccine Map"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/mapButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="100dp"
-            android:text="Button"
+            android:text="VIEW MAP"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/layout_bg"
+        android:elevation="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/sfprodisplay_medium"
+            android:text="Leading Candidates"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/layout_bg_white"
+            android:elevation="3dp"
+            android:paddingBottom="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/sfprodisplay_semibold"
+                android:text="I"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:fontFamily="@font/sfprodisplay_semibold"
+                android:text="II"
+                android:textSize="25sp"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:fontFamily="@font/sfprodisplay_semibold"
+                android:text="III"
+                android:textSize="25sp"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:fontFamily="@font/sfprodisplay_semibold"
+                android:text="IV"
+                android:textSize="25sp"
+                app:layout_constraintStart_toEndOf="@+id/textView5"
+                app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:fontFamily="@font/sfprodisplay_semibold"
+                android:text="RR"
+                android:textSize="25sp"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+            <ProgressBar
+                android:id="@+id/progressBar1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="15dp"
+                android:max="5"
+                android:progressDrawable="@drawable/custom_progressbar"
+                app:layout_constraintEnd_toEndOf="@+id/textView10"
+                app:layout_constraintStart_toStartOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/tvCandidate1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Vaccine 1"
+                app:layout_constraintStart_toStartOf="@+id/progressBar1"
+                app:layout_constraintTop_toBottomOf="@+id/progressBar1" />
+
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="20dp"
+                android:max="5"
+                android:progressDrawable="@drawable/custom_progressbar"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar1"
+                app:layout_constraintStart_toStartOf="@+id/progressBar1"
+                app:layout_constraintTop_toBottomOf="@+id/tvCandidate1" />
+
+            <TextView
+                android:id="@+id/tvCandidate2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Vaccine 2"
+                app:layout_constraintStart_toStartOf="@+id/tvCandidate1"
+                app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+
+            <ProgressBar
+                android:id="@+id/progressBar3"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="20dp"
+                android:max="5"
+                android:progressDrawable="@drawable/custom_progressbar"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar2"
+                app:layout_constraintStart_toStartOf="@+id/progressBar2"
+                app:layout_constraintTop_toBottomOf="@+id/tvCandidate2" />
+
+            <ProgressBar
+                android:id="@+id/progressBar4"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="20dp"
+                android:max="5"
+                android:progressDrawable="@drawable/custom_progressbar"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar3"
+                app:layout_constraintStart_toStartOf="@+id/tvCandidate3"
+                app:layout_constraintTop_toBottomOf="@+id/tvCandidate3" />
+
+            <ProgressBar
+                android:id="@+id/progressBar5"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="20dp"
+                android:max="5"
+                android:progressDrawable="@drawable/custom_progressbar"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar4"
+                app:layout_constraintStart_toStartOf="@+id/tvCandidate4"
+                app:layout_constraintTop_toBottomOf="@+id/tvCandidate4" />
+
+            <TextView
+                android:id="@+id/tvCandidate3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Vaccine 3"
+                app:layout_constraintStart_toStartOf="@+id/tvCandidate1"
+                app:layout_constraintTop_toBottomOf="@+id/progressBar3" />
+
+            <TextView
+                android:id="@+id/tvCandidate4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Vaccine 4"
+                app:layout_constraintStart_toStartOf="@+id/tvCandidate1"
+                app:layout_constraintTop_toBottomOf="@+id/progressBar4" />
+
+            <TextView
+                android:id="@+id/tvCandidate5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vaccine 5"
+                app:layout_constraintStart_toStartOf="@+id/tvCandidate1"
+                app:layout_constraintTop_toBottomOf="@+id/progressBar5" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

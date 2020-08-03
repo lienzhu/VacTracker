@@ -1,5 +1,6 @@
 package com.example.vactracker.ui;
 
+import com.example.vactracker.ui.datamap.Location;
 import com.example.vactracker.ui.datamap.Map;
 
 import okhttp3.RequestBody;
