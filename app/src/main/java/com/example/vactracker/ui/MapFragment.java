@@ -8,18 +8,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 
 import com.example.vactracker.R;
 import com.example.vactracker.ui.datamap.Map;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
@@ -37,19 +41,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 
-public class MapFragment extends Fragment implements OnMapReadyCallback {
+public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
+    private ConstraintLayout layoutLoading;
     private static final String TAG = "MapFragment";
-    private MapView googleMap;
+    private GoogleMap googleMap;
     private MapService service;
-    private ArrayList<String> locationArray = new ArrayList<>();
+    //private ArrayList<String> locationArray = new ArrayList<>();
 
-    public ArrayList<String> getLocationArray() { return this.locationArray; }
-    public void setLocationArray(ArrayList<String> locationArray) { this.locationArray = locationArray; }
+    //public ArrayList<String> getLocationArray() { return this.locationArray; }
+    //public void setLocationArray(ArrayList<String> locationArray) { this.locationArray = locationArray; }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        getMapData();
+
+
+
 
     // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_map, container, false);
@@ -64,6 +71,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
+        layoutLoading = view.findViewById(R.id.layoutLoading);
+        layoutLoading.setVisibility(View.VISIBLE);
 
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,8 +82,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         });
     }
 
-    public void getMapData(){
-        //ArrayList<String> arrayList = getLocationArray();
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+         ArrayList<String> locationArray = new ArrayList<>();
+         this.googleMap = googleMap;
 
         //API Methods
         //Retrofit converts the HTTP API into a Java interface
@@ -98,6 +110,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             public void onResponse(Call<Map> call, Response<Map> response) {
                 if (response.isSuccessful()) {
                     Log.d(TAG, "onResponse: SUCCESS");
+
+
                     Map mapInfo = response.body();
 
                     //Check response output for City/Country
@@ -108,9 +122,48 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
                     }
                     System.out.println(locationArray.get(1));
-                    setLocationArray(locationArray);
+                    //setLocationArray(locationArray);
                     //System.out.println("Response list is: " + arrayList);
-                    System.out.println("Response list is: " + getLocationArray());
+                    //System.out.println("Response list is: " + getLocationArray());
+
+
+
+                    System.out.println("Map Ready location: " + locationArray);
+//        System.out.println("Map Ready location: " + locationArray.get(0));
+
+                    for (int j =0; j<locationArray.size(); j++) {
+                        LatLng address = getLocationFromAddress(getActivity().getApplicationContext(), locationArray.get(j));
+                        //LatLng address = getLocationFromAddress(getActivity().getApplicationContext(), "Street Number, Street, Suburb, State, Postcode");
+
+                        String[] latlong = "-33.8807699,150.99844460000003".split(",");
+                        double latitude = Double.parseDouble(latlong[0]);
+                        double longitude = Double.parseDouble(latlong[1]);
+                        LatLng locationDef = new LatLng(latitude, longitude);
+
+                        if (address == null) {
+                            address = locationDef;
+                        }
+                        googleMap.addMarker(new MarkerOptions().position(address).title(
+                                "City: " + locationArray.get(j)
+                                + "\nTrial Status" + mapInfo.getObjs().get(j).getTrialStatus()
+                                + "\nPatient Setting" + mapInfo.getObjs().get(j).getPatientSetting()
+                                + "\nCOVID-19 Status" + mapInfo.getObjs().get(j).getCovid19Status()
+                                + "\nOutcome" + mapInfo.getObjs().get(j).getOutcome()
+                                ));
+
+
+                        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                            @Override
+                            public void onInfoWindowClick(Marker marker) {
+                                System.out.println("Marker clicked");
+                            }
+
+                        });
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLng(locationDef));
+
+                        //Map finished loading
+                        layoutLoading.setVisibility(View.INVISIBLE);
+                    }
 
                 } else {
                     Log.d(TAG, "onResponse: ERROR IS " + response.body());
@@ -125,31 +178,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         });
         //return arrayList;
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        getMapData();
         //ArrayList<String> mapArray = getMapData();
 
-        GoogleMap mMap = googleMap;
+    }
 
-        System.out.println("Map Ready location: " + locationArray);
-//        System.out.println("Map Ready location: " + locationArray.get(0));
+    public void onInfoWindowClick(Marker marker) {
 
-        for (int j =0; j<locationArray.size(); j++) {
-            LatLng address = getLocationFromAddress(getActivity().getApplicationContext(), locationArray.get(j));
-            //LatLng address = getLocationFromAddress(getActivity().getApplicationContext(), "Street Number, Street, Suburb, State, Postcode");
-            if (address == null) {
-                String[] latlong = "-33.8807699,150.99844460000003".split(",");
-                double latitude = Double.parseDouble(latlong[0]);
-                double longitude = Double.parseDouble(latlong[1]);
-                LatLng locationDef = new LatLng(latitude, longitude);
-                address = locationDef;
-            }
-            mMap.addMarker(new MarkerOptions().position(address).title("City: " + locationArray.get(j)));
-            //mMap.moveCamera(CameraUpdateFactory.newLatLng(address));
-        }
     }
 
     public LatLng getLocationFromAddress(Context context, String strAddress) {
@@ -180,8 +214,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
             ex.printStackTrace();
         }
-        System.out.println(p1);
+        //System.out.println(p1);
         return p1;
     }
+
+
 
 }

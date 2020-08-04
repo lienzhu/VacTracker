@@ -32,6 +32,7 @@ public class DevelopmentFragment extends Fragment {
     TextView d;
 
     private Button mapButton;
+    private Button buttonVaccineType;
 
     private static final String TAG = "Development Fragment";
     private TextView tvVaccineType;
@@ -70,14 +71,6 @@ public class DevelopmentFragment extends Fragment {
 
         d = root.findViewById(R.id.text_development);
 
-
-//        developmentViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(String s) {
-//                d.setText(s);
-//            }
-//        });
-
         tvVaccineType = root.findViewById(R.id.tvVaccineType);
         tvVaccineTypeValue = root.findViewById(R.id.tvVaccineTypeValue);
         tvCandidate1 = root.findViewById(R.id.tvCandidate1);
@@ -98,26 +91,30 @@ public class DevelopmentFragment extends Fragment {
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//               Intent intent = new Intent(getActivity(), MapActivity.class);
-//               startActivity(intent);
 
-//                NavHostFragment.findNavController(DevelopmentFragment.this)
-//                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-
-
-                Fragment nextFrag= new MapFragment();
+                Fragment mapFrag= new MapFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .add(R.id.nav_host_fragment, nextFrag, "findThisFragment")
+                        .add(R.id.nav_host_fragment, mapFrag, "findThisFragment")
                         .addToBackStack(null)
                         .commit();
 
                 //getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
+            }
+        });
+        buttonVaccineType = root.findViewById(R.id.buttonVaccineType);
+        buttonVaccineType.setOnClickListener(new View.OnClickListener(){
+        @Override
+            public void onClick(View v) {
 
+            Fragment typeFrag= new VaccineTypeFragment();
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .add(R.id.nav_host_fragment, typeFrag, "VaccineTypeFragment")
+                    .addToBackStack(null)
+                    .commit();
 
             }
         });
-
 
         ArrayList<String> vaccineDevelopmentArray = new ArrayList<String>();
         ArrayList<Integer> vaccineDevelopmentArrayPhase = new ArrayList<Integer>();
@@ -129,11 +126,17 @@ public class DevelopmentFragment extends Fragment {
                 if (mDb.objDAO().getObjs().get(i).getNextSteps().contains("Phase 4")) {
                     vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
                     vaccineDevelopmentArrayPhase.add(8);
-                    //System.out.println(mDb.objDAO().getObjs().get(i).getNextSteps());
+                    System.out.println(mDb.objDAO().getObjs().get(i).getNextSteps());
                 } else if ((mDb.objDAO().getObjs().get(i).getNextSteps().contains("Phase 3"))) {
                     vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
                     vaccineDevelopmentArrayPhase.add(6);
-                } else if (mDb.objDAO().getObjs().get(i).getNextSteps().contains("Phase 2/3")) {
+                }
+            }
+        }
+
+        for (int i = 0; i<mDb.objDAO().getObjs().size(); i++) {
+            if (mDb.objDAO().getObjs().get(i).getNextSteps() != null) {
+                if (mDb.objDAO().getObjs().get(i).getNextSteps().contains("Phase 2/3")) {
                     vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
                     vaccineDevelopmentArrayPhase.add(6);
                 } else if (mDb.objDAO().getObjs().get(i).getNextSteps().contains("Phase 2")) {
@@ -158,15 +161,15 @@ public class DevelopmentFragment extends Fragment {
         tvCandidate4.setText(vaccineDevelopmentArray.get(3));
         tvCandidate5.setText(vaccineDevelopmentArray.get(4));
 
-        progressBar1.setMax(8);
+        progressBar1.setMax(12);
         progressBar1.setProgress(0);
-        progressBar2.setMax(8);
+        progressBar2.setMax(12);
         progressBar2.setProgress(0);
-        progressBar3.setMax(8);
+        progressBar3.setMax(12);
         progressBar3.setProgress(0);
-        progressBar4.setMax(8);
+        progressBar4.setMax(12);
         progressBar4.setProgress(0);
-        progressBar5.setMax(8);
+        progressBar5.setMax(12);
         progressBar5.setProgress(0);
 
         progressBar1.setProgress(vaccineDevelopmentArrayPhase.get(0));

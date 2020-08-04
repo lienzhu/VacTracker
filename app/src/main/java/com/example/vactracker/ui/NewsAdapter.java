@@ -2,6 +2,7 @@ package com.example.vactracker.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,9 @@ import com.example.vactracker.R;
 import com.example.vactracker.ui.home.HomeFragment;
 import com.example.vactracker.ui.newsdata.Article;
 import com.example.vactracker.ui.newsdata.News;
+import com.bumptech.glide.Glide;
+import com.example.vactracker.ui.vaccines.VaccinesDetailActivity;
+import com.example.vactracker.ui.vaccines.VaccinesDetailFragment;
 
 import java.util.List;
 
@@ -34,12 +38,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
         @Override
         public void onClick(View v) {
-            Article article = (Article) v.getTag();
+            //Article article = mArticle.get(position);
 
-//                Context context = v.getContext();
-//                Intent intent = new Intent(context, HomeFragment.class);
-//                intent.putExtra(HomeFragment.ARG_ITEM_ID, article.getAuthor());
-               //context.startActivity(intent);
+            Context context = v.getContext();
+            System.out.println("Click detected");
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+            context.startActivity(browserIntent);
 
         }
     };
@@ -72,11 +76,27 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     @Override
     public void onBindViewHolder(NewsViewHolder holder, int position) {
         Article article = mArticle.get(position);
+        Glide.with(holder.itemView).load(article.getUrlToImage()).fitCenter().into(holder.image);
+
         holder.description.setText(article.getTitle().toString());
         //Log.d(TAG, "onSetText: SUCCESS");
 
         holder.itemView.setTag(article);
         holder.itemView.setOnClickListener(mOnClickListener);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.getUrl()));
+                context.startActivity(intent);
+
+            }
+        });
+
+
+
     }
 
     //Clear list, add new list

@@ -80,6 +80,17 @@
             app:layout_constraintStart_toStartOf="@+id/tvVaccineType"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/buttonVaccineType"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.957" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -108,14 +119,40 @@
 
         <Button
             android:id="@+id/mapButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="VIEW MAP"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.957" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="133dp"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvVaccineType2"
+            app:srcCompat="@drawable/icon_doctors_compressed" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="Click here to explore vaccine development around the world."
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:layout_constraintVertical_bias="0.058" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -135,13 +172,12 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/sfprodisplay_medium"
             android:text="Leading Candidates"
             android:textColor="@android:color/white"
             android:textSize="25sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -164,7 +200,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/sfprodisplay_semibold"
                 android:text="I"
@@ -221,11 +257,12 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
                 android:max="5"
                 android:progressDrawable="@drawable/custom_progressbar"
                 app:layout_constraintEnd_toEndOf="@+id/textView10"
-                app:layout_constraintStart_toStartOf="@+id/textView3"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <TextView
@@ -280,7 +317,7 @@
                 android:max="5"
                 android:progressDrawable="@drawable/custom_progressbar"
                 app:layout_constraintEnd_toEndOf="@+id/progressBar3"
-                app:layout_constraintStart_toStartOf="@+id/tvCandidate3"
+                app:layout_constraintStart_toStartOf="@+id/progressBar3"
                 app:layout_constraintTop_toBottomOf="@+id/tvCandidate3" />
 
             <ProgressBar
@@ -292,7 +329,7 @@
                 android:max="5"
                 android:progressDrawable="@drawable/custom_progressbar"
                 app:layout_constraintEnd_toEndOf="@+id/progressBar4"
-                app:layout_constraintStart_toStartOf="@+id/tvCandidate4"
+                app:layout_constraintStart_toStartOf="@+id/progressBar4"
                 app:layout_constraintTop_toBottomOf="@+id/tvCandidate4" />
 
             <TextView

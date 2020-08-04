@@ -8,8 +8,8 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_development">Development</string>
-    <string name="menu_vaccines">Vaccines</string>
+    <string name="menu_development">Development Progress</string>
+    <string name="menu_vaccines">Vaccine Search</string>
     <string name="menu_support">Support</string>
     <string name="menu_faq">FAQ</string>
 
@@ -27,4 +27,15 @@
     <string name="google_maps_key">AIzaSyDsoxuuP8xv9qD1KNtqnmuL0B-MITjM9YM</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="Info_DNA">DNA-based vaccines work by inserting a genetically engineered blueprint of viral gene(s) into small DNA molecules (called plasmids) for injection into vaccinated people.Cells take in the DNA plasmids and follow their instructions to build viral proteins, which the immune system recognizes as foreign, triggering the immune response that protects against the disease.</string>
+    <string name="Info_Inactivated_Virus">This type of vaccine consists of the disease-causing virus that has been killed (with heat or chemicals), so it won’t make you sick, and can be used in people that may not be able to use a live attenuated virus vaccine (e.g., those who are immunocompromised). In general, inactivated virus vaccines do not provide as strong of an immune response as live attenuated virus vaccines, so additional doses of the vaccine may be needed to get a strong enough immune response. Still, they may be safer for some people.</string>
+    <string name="Info_Live_Attenuated_">In contrast to inactivated virus vaccines, these vaccines, also whole viruses, are live to elicit a stronger immune response but weakened to reduce virulence. Examples include those for measles, mumps, and tuberculosis.</string>
+    <string name="Info_Non_Replicating_Viral_Vector">This approach is similar to replicating viral vector vaccines in that a viral gene is added to a different, non-replicating, virus and delivered to the vaccine recipient. No approved product of this kind has resulted to date.</string>
+    <string name="Info_Replicating_Viral_Vector">This involves putting a gene for a viral protein into a different virus (one that will not cause illness but can replicate). Replication of the viral vector also produces copies of the viral protein, which triggers an immune response to that protein. Examples include ebola and dengue vaccines.</string>
+    <string name="Info_Protein_Subunit">Rather than introducing whole viruses to an immune system, a fragment of the virus is used to trigger an immune response and stimulate immunity. Examples include the subunit vaccines against hepatitis B and shingles.</string>
+    <string name="Info_RNA">Similar to DNA vaccines, these experimental vaccines provide immunity through introduction of genetic material (RNA). RNA vaccines can also be potentially developed more quickly and easily than other vaccines. No RNA vaccines have been approved for human use.</string>
+    <string name="Info_Virus_Like_Particle">Virus-like particle (VLP) vaccines closely resemble viruses but are non-infectious because they contain no viral genetic material. Since VLPs cannot replicate, they provide a safer alternative to attenuated viruses. Examples include the HPV vaccine.</string>
+    <string name="Info_Other_Vaccines">From a gene-encoded antibody vaccine to a self-assembling vaccine and more, these are the vaccines being developed that do not fall easily into one of the other product categories or details about its category are not publicly available.</string>
+
 </resources>
