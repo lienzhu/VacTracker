@@ -30,33 +30,37 @@
 
     <Button
         android:id="@+id/all_button"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
+        android:background="@drawable/button_selector"
         android:text="all"
+        android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/preclinical_button"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_selector"
         android:text="pre-clinical"
+        android:textColor="#FFFFFF"
         app:layout_constraintBaseline_toBaselineOf="@+id/clinical_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/clinical_button" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/clinical_button"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:text="clinical"
 
+        android:background="@drawable/button_selector"
+        android:text="clinical"
+        android:textColor="#FFFFFF"
         app:layout_constraintBaseline_toBaselineOf="@+id/all_button"
+        app:layout_constraintEnd_toStartOf="@+id/preclinical_button"
         app:layout_constraintStart_toEndOf="@+id/all_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.vactracker.ui.development;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.example.vactracker.AppDatabase;
 import com.example.vactracker.R;
 import com.example.vactracker.ui.MapFragment;
 import com.example.vactracker.ui.data.Obj;
+import com.example.vactracker.ui.vaccines.VaccinesDetailActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -107,11 +109,8 @@ public class DevelopmentFragment extends Fragment {
         @Override
             public void onClick(View v) {
 
-            Fragment typeFrag= new VaccineTypeFragment();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .add(R.id.nav_host_fragment, typeFrag, "VaccineTypeFragment")
-                    .addToBackStack(null)
-                    .commit();
+            Intent intent = new Intent(getActivity(), VaccineTypeActivity.class);
+            startActivity(intent);
 
             }
         });

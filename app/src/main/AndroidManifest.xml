@@ -39,9 +39,11 @@
             android:label="@string/app_name">
 
         </activity>
-        <activity
-            android:name=".ui.vaccines.PopInfo"
-            android:theme="@style/AppTheme.CustomTheme" />
+
+        <activity android:name=".ui.development.VaccineTypeActivity"
+            android:label="Vaccine Types">
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

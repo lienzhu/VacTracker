@@ -61,16 +61,16 @@ public class Faqpopup1 extends DialogFragment {
         });
 
         if(value == "Q1") {
-            tvFAQ.setText("What is the VacTracker?");
+            tvFAQ.setText("What is CoVac?");
             Log.d(TAG, "Question1 Displayed");
-            tvAnswer.setText("The VACTracker App is one-stop-shop for all information relating to the development of the COVID-19 vaccine. \n " +
+            tvAnswer.setText("The CoVac App is one-stop-shop for all information relating to the development of the COVID-19 vaccine. \n " +
                     "The app compiles information from credible news outlets to provide users with access to authentic updates. " +
                     "Our goal is to solve the problem of COVID-19 vaccine information being segregated all over the internet, where reliable sources aren’t always easily accessible. ");
             Log.d(TAG, "Question1 Answer");
         } else if(value == "Q2"){
             Log.d(TAG, "else if Q2");
             tvFAQ.setText("Where is the information from?");
-            tvAnswer.setText("The information displayed in VACTracker is compiled " +
+            tvAnswer.setText("The information displayed in CoVac is compiled " +
                     "from various news outlets from the internet. These outlets have been filtered and verified by our team, e" +
                     "nsuring that only authentic information is provided to you.");
 
