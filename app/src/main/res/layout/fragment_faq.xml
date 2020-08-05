@@ -58,7 +58,7 @@
                         android:layout_height="52dp"
                         android:layout_marginTop="15dp"
                         android:background="@color/colorBackgroundBlue"
-                        android:text="What is the VACTracker App?" />
+                        android:text="What is the CoVac App?" />
 
                     <Button
                         android:id="@+id/tvQ2"

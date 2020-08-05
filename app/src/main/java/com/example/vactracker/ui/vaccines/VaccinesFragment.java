@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,7 +47,7 @@ public class VaccinesFragment extends Fragment {
     private static final String TAG = "Vaccine Fragment";
     private AppDatabase mDb;
     private RecyclerView mRvList;
-    private Button allButton, preclinicalButton, clinicalButton;
+//    private Button allButton, preclinicalButton, clinicalButton;
 
 
 
@@ -75,10 +76,12 @@ public class VaccinesFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_vaccines, container, false);
 
          mRvList = root.findViewById(R.id.list);
-         allButton = root.findViewById(R.id.all_button);
-         preclinicalButton = root.findViewById(R.id.preclinical_button);
-         clinicalButton = root.findViewById(R.id.clinical_button);
-
+         final Button allButton = root.findViewById(R.id.all_button);
+        final Button preclinicalButton = root.findViewById(R.id.preclinical_button);
+        final Button clinicalButton = root.findViewById(R.id.clinical_button);
+        allButton.setBackgroundColor(allButton.getContext().getResources().getColor(R.color.colorPrimary));
+        clinicalButton.setBackgroundColor(clinicalButton.getContext().getResources().getColor(R.color.lightpurple));
+        preclinicalButton.setBackgroundColor(preclinicalButton.getContext().getResources().getColor(R.color.lightpurple));
 
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -94,7 +97,13 @@ public class VaccinesFragment extends Fragment {
                 vaccineAdapter = new VaccineAdapter(mDb.objDAO().getPreclinicalObjs());
 
                 mRvList.setAdapter(vaccineAdapter);
+
+                preclinicalButton.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+                allButton.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lightpurple));
+                clinicalButton.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lightpurple));
             }
+
+
         });
 
         clinicalButton.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +113,9 @@ public class VaccinesFragment extends Fragment {
                 vaccineAdapter = new VaccineAdapter(mDb.objDAO().getClinicalObjs());
 
                 mRvList.setAdapter(vaccineAdapter);
+                clinicalButton.setBackgroundColor(clinicalButton.getContext().getResources().getColor(R.color.colorPrimary));
+                allButton.setBackgroundColor(allButton.getContext().getResources().getColor(R.color.lightpurple));
+                preclinicalButton.setBackgroundColor(preclinicalButton.getContext().getResources().getColor(R.color.lightpurple));
             }
         });
 
@@ -114,6 +126,9 @@ public class VaccinesFragment extends Fragment {
                 vaccineAdapter = new VaccineAdapter(mDb.objDAO().getObjs());
 
                 mRvList.setAdapter(vaccineAdapter);
+                allButton.setBackgroundColor(allButton.getContext().getResources().getColor(R.color.colorPrimary));
+                clinicalButton.setBackgroundColor(clinicalButton.getContext().getResources().getColor(R.color.lightpurple));
+                preclinicalButton.setBackgroundColor(preclinicalButton.getContext().getResources().getColor(R.color.lightpurple));
             }
         });
 
