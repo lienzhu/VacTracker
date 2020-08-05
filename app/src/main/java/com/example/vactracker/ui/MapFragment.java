@@ -1,13 +1,20 @@
 package com.example.vactracker.ui;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +29,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -87,6 +95,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     public void onMapReady(GoogleMap googleMap) {
          ArrayList<String> locationArray = new ArrayList<>();
          this.googleMap = googleMap;
+          String url = null;
+
 
         //API Methods
         //Retrofit converts the HTTP API into a Java interface
@@ -122,14 +132,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
                     }
                     System.out.println(locationArray.get(1));
-                    //setLocationArray(locationArray);
-                    //System.out.println("Response list is: " + arrayList);
-                    //System.out.println("Response list is: " + getLocationArray());
-
-
 
                     System.out.println("Map Ready location: " + locationArray);
-//        System.out.println("Map Ready location: " + locationArray.get(0));
 
                     for (int j =0; j<locationArray.size(); j++) {
                         LatLng address = getLocationFromAddress(getActivity().getApplicationContext(), locationArray.get(j));
@@ -143,19 +147,70 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                         if (address == null) {
                             address = locationDef;
                         }
-                        googleMap.addMarker(new MarkerOptions().position(address).title(
-                                "City: " + locationArray.get(j)
-                                + "\nTrial Status" + mapInfo.getObjs().get(j).getTrialStatus()
-                                + "\nPatient Setting" + mapInfo.getObjs().get(j).getPatientSetting()
-                                + "\nCOVID-19 Status" + mapInfo.getObjs().get(j).getCovid19Status()
-                                + "\nOutcome" + mapInfo.getObjs().get(j).getOutcome()
-                                ));
+                        googleMap.addMarker(new MarkerOptions()
+                                        .position(address)
+                                        .title(mapInfo.getObjs().get(j).getUrl())
+                                        .snippet(
+                                        "\n- Vaccine Clinical Trial Details -"
+                                        + "\n\nCity: " + locationArray.get(j)
+                                        + "\nVaccine Trial Status: " + mapInfo.getObjs().get(j).getTrialStatus()
+                                        + "\nPatient Setting: " + mapInfo.getObjs().get(j).getPatientSetting()
+                                        + "\nCOVID-19 Status: " + mapInfo.getObjs().get(j).getCovid19Status()
 
+                                        + "\n\nClick this view for more details. "
+                                        //+ "\nOutcome: " + mapInfo.getObjs().get(j).getOutcome()
+                                        )
+                                        //.icon(BitmapDescriptorFactory(defaultMarker(BitmapDescriptorFactory.HUE_RED)))
+                                        );
+
+                        googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+                            @Override
+                            public View getInfoWindow(Marker arg0) {
+                                return null;
+                            }
+
+                            @Override
+                            public View getInfoContents(Marker marker) {
+
+                                LinearLayout info = new LinearLayout(getContext());
+                                info.setOrientation(LinearLayout.VERTICAL);
+
+
+                                TextView title = new TextView(getContext());
+                                //title.setTextColor(Color.BLACK);
+                                title.setTextColor(Color.TRANSPARENT);
+                                title.setGravity(Gravity.CENTER);
+                                title.setTypeface(null, Typeface.BOLD);
+                                title.setTextSize(1);
+                                title.setText(marker.getTitle());
+
+                                TextView snippet = new TextView(getContext());
+                                snippet.setTextColor(Color.DKGRAY);
+                                snippet.setText(marker.getSnippet());
+
+                                TextView id = new TextView(getContext());
+                                id.setTextColor(Color.TRANSPARENT);
+                                id.setText(marker.getId());
+
+                                info.addView(title);
+                                info.addView(snippet);
+                                info.addView(id);
+
+                                return info;
+                            }
+                        });
 
                         googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                             @Override
                             public void onInfoWindowClick(Marker marker) {
                                 System.out.println("Marker clicked");
+
+                                String url = marker.getTitle();
+                                Intent i = new Intent(Intent.ACTION_VIEW);
+                                i.setData(Uri.parse(url));
+                                startActivity(i);
+
                             }
 
                         });
@@ -200,7 +255,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         try {
             // May throw an IOException
             //address = coder.getFromLocationName(strAddress, 5);
-            address = coder.getFromLocationName(strAddress, 5);
+            address = coder.getFromLocationName(strAddress, 2);
             if (address == null) {
                 return (locationDef);
             }
