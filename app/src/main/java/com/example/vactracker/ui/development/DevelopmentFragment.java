@@ -122,12 +122,13 @@ public class DevelopmentFragment extends Fragment {
 
 //vaccineObject = mDb.objDAO().getObjs().get(position);
         for (int i = 0; i<mDb.objDAO().getObjs().size(); i++) {
-            if (mDb.objDAO().getObjs().get(i).getNextSteps() != null) {
-                if (mDb.objDAO().getObjs().get(i).getNextSteps().contains("Phase 4")) {
+            String nextStepsDB = mDb.objDAO().getObjs().get(i).getNextSteps();
+            if (nextStepsDB != null) {
+                if (nextStepsDB.contains("Phase 4")) {
                     vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
                     vaccineDevelopmentArrayPhase.add(8);
-                    System.out.println(mDb.objDAO().getObjs().get(i).getNextSteps());
-                } else if ((mDb.objDAO().getObjs().get(i).getNextSteps().contains("Phase 3"))) {
+                    //System.out.println(nextStepsDB);
+                } else if ((nextStepsDB.contains("Phase 3"))) {
                     vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
                     vaccineDevelopmentArrayPhase.add(6);
                 }
@@ -135,11 +136,12 @@ public class DevelopmentFragment extends Fragment {
         }
 
         for (int i = 0; i<mDb.objDAO().getObjs().size(); i++) {
-            if (mDb.objDAO().getObjs().get(i).getNextSteps() != null) {
-                if (mDb.objDAO().getObjs().get(i).getNextSteps().contains("Phase 2/3")) {
+            String nextStepsDB = mDb.objDAO().getObjs().get(i).getNextSteps();
+            if (nextStepsDB != null) {
+                if (nextStepsDB.contains("Phase 2/3") && !mDb.objDAO().getObjs().get(i).getDeveloper().contains("Moderna"))  {
                     vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
                     vaccineDevelopmentArrayPhase.add(6);
-                } else if (mDb.objDAO().getObjs().get(i).getNextSteps().contains("Phase 2")) {
+                } else if (nextStepsDB.contains("Phase 2") && !mDb.objDAO().getObjs().get(i).getDeveloper().contains("Moderna")) {
                     vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
                     vaccineDevelopmentArrayPhase.add(4);
                 }
