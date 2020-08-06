@@ -26,11 +26,11 @@
                 <stroke android:color="@android:color/transparent"
                     android:width="3dip"/>
                 <gradient
-                    android:startColor="@color/colorPrimary"
-                    android:centerColor="@color/colorPrimary"
-                    android:centerY="1.0"
-                    android:endColor="@color/colorPrimary"
-                    android:angle="270"
+                    android:startColor="#EF2D56"
+                    android:centerColor="#EF9C57"
+                    android:centerY="0.2"
+                    android:endColor="#F7F976"
+                    android:angle="45"
                     />
             </shape>
         </clip>
