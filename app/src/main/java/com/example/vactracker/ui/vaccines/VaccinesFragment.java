@@ -81,10 +81,10 @@ public class VaccinesFragment extends Fragment {
         final Button preclinicalButton = root.findViewById(R.id.preclinical_button);
         final Button clinicalButton = root.findViewById(R.id.clinical_button);
 
-        allButton.setBackgroundResource(R.drawable.button_focus);
+        allButton.setBackgroundResource(R.drawable.button_unfocused);
         clinicalButton.setBackgroundResource(R.drawable.button_unfocused);
         preclinicalButton.setBackgroundResource(R.drawable.button_unfocused);
-        allButton.setTextColor(Color.WHITE);
+        allButton.setTextColor(Color.DKGRAY);
         preclinicalButton.setTextColor(Color.DKGRAY);
         clinicalButton.setTextColor(Color.DKGRAY);
 

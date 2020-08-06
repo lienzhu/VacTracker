@@ -12,7 +12,7 @@
         android:id="@+id/appbar"
 
         android:layout_width="match_parent"
-        android:layout_height="192dp">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,20 +20,23 @@
 
             <TextView
                 android:id="@+id/title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="sans-serif"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/sfprodisplay_medium"
                 android:text="TextView"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="21sp"
+                android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -78,6 +81,7 @@
         android:layout_marginEnd="8dp"
         android:clickable="true"
         android:focusable="true"
+        android:visibility="gone"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="15dp"
         app:cardElevation="5dp"

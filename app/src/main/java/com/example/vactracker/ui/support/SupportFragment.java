@@ -1,6 +1,7 @@
 package com.example.vactracker.ui.support;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -36,6 +37,7 @@ public class SupportFragment extends Fragment {
 
         CardForm cardForm = root.findViewById(R.id.card_form);
         Button donate = root.findViewById(R.id.donate_button);
+        donate.setTextColor(Color.DKGRAY);
 
         cardForm.cardRequired(true)
                 .expirationRequired(true)
@@ -49,6 +51,8 @@ public class SupportFragment extends Fragment {
         donate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                donate.setTextColor(Color.WHITE);
+                donate.setBackgroundResource(R.drawable.button_focus);
                 if (cardForm.isValid()) {
                     alertBuilder = new AlertDialog.Builder(getActivity());
                     alertBuilder.setTitle("Confirm before donating");
@@ -67,6 +71,8 @@ public class SupportFragment extends Fragment {
                     alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            donate.setTextColor(Color.DKGRAY);
+                            donate.setBackgroundResource(R.drawable.button_unfocused);
                             dialogInterface.dismiss();
                         }
                     });
@@ -75,6 +81,8 @@ public class SupportFragment extends Fragment {
 
                 } else {
                     Toast.makeText(getActivity(), "Please complete the form", Toast.LENGTH_LONG).show();
+                    donate.setTextColor(Color.DKGRAY);
+                    donate.setBackgroundResource(R.drawable.button_unfocused);
                 }
             }
         });
@@ -85,6 +93,15 @@ public class SupportFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 donationAmount.setText("10.00");
+                donate10.setTextColor(Color.WHITE);
+                donate20.setTextColor(Color.DKGRAY);
+                donate50.setTextColor(Color.DKGRAY);
+                donate100.setTextColor(Color.DKGRAY);
+                donate10.setBackgroundResource(R.drawable.button_focus);
+                donate20.setBackgroundResource(R.drawable.button_unfocused);
+                donate50.setBackgroundResource(R.drawable.button_unfocused);
+                donate100.setBackgroundResource(R.drawable.button_unfocused);
+
             }
         });
 
@@ -92,6 +109,14 @@ public class SupportFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 donationAmount.setText("20.00");
+                donate10.setTextColor(Color.DKGRAY);
+                donate20.setTextColor(Color.WHITE);
+                donate50.setTextColor(Color.DKGRAY);
+                donate100.setTextColor(Color.DKGRAY);
+                donate10.setBackgroundResource(R.drawable.button_unfocused);
+                donate20.setBackgroundResource(R.drawable.button_focus);
+                donate50.setBackgroundResource(R.drawable.button_unfocused);
+                donate100.setBackgroundResource(R.drawable.button_unfocused);
             }
         });
 
@@ -99,6 +124,14 @@ public class SupportFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 donationAmount.setText("50.00");
+                donate10.setTextColor(Color.DKGRAY);
+                donate20.setTextColor(Color.DKGRAY);
+                donate50.setTextColor(Color.WHITE);
+                donate100.setTextColor(Color.DKGRAY);
+                donate10.setBackgroundResource(R.drawable.button_unfocused);
+                donate20.setBackgroundResource(R.drawable.button_unfocused);
+                donate50.setBackgroundResource(R.drawable.button_focus);
+                donate100.setBackgroundResource(R.drawable.button_unfocused);
             }
         });
 
@@ -106,6 +139,14 @@ public class SupportFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 donationAmount.setText("100.00");
+                donate10.setTextColor(Color.DKGRAY);
+                donate20.setTextColor(Color.DKGRAY);
+                donate50.setTextColor(Color.DKGRAY);
+                donate100.setTextColor(Color.WHITE);
+                donate10.setBackgroundResource(R.drawable.button_unfocused);
+                donate20.setBackgroundResource(R.drawable.button_unfocused);
+                donate50.setBackgroundResource(R.drawable.button_unfocused);
+                donate100.setBackgroundResource(R.drawable.button_focus);
             }
         });
 
