@@ -99,6 +99,12 @@ public class VaccinesDetailFragment extends Fragment {
             ((TextView) root.findViewById(R.id.next_steps)).setText(vaccineObject.getNextSteps());
         }
 
+        if(vaccineObject.getStageOfDevelopment() == null) {
+            ((TextView) root.findViewById(R.id.next_steps2)).setText("Unknown");
+        } else {
+            ((TextView) root.findViewById(R.id.next_steps2)).setText(vaccineObject.getStageOfDevelopment());
+        }
+
 
         if(vaccineObject.getClinicalTrialsOtherDiseases() == null) {
             ((TextView) root.findViewById(R.id.clinical_button)).setText("Unknown");
