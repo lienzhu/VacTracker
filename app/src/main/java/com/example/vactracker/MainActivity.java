@@ -160,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
                         mDb.objDAO().updateProductType("RNA-based",mDb.objDAO().getObjs().get(j).getId());
                     } else if (vaccineType.contains("Replicating")){
                         mDb.objDAO().updateProductType("Replicating viral vector",mDb.objDAO().getObjs().get(j).getId());
+                    } else if (vaccineType.contains("other")){
+                        mDb.objDAO().updateProductType("Other Vaccine Type",mDb.objDAO().getObjs().get(j).getId());
                     } else if (vaccineType.contains("Unknown")){
                         mDb.objDAO().updateProductType("Unknown",mDb.objDAO().getObjs().get(j).getId());
                     }

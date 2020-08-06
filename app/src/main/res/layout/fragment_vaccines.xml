@@ -8,9 +8,12 @@
     tools:context=".ui.vaccines.VaccinesFragment">
 
     <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="413dp"
-        android:layout_height="613dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/all_button">
@@ -30,34 +33,38 @@
 
     <Button
         android:id="@+id/all_button"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/button_selector"
-        android:text="all"
-        android:textColor="#FFFFFF"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_background"
+        android:radius="15dp"
+        android:text="All"
+        android:textAllCaps="false"
+        android:textColor="@android:color/tertiary_text_dark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/preclinical_button"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/button_selector"
-        android:text="pre-clinical"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/button_unfocused"
+        android:text="Pre-Clinical"
+        android:textAllCaps="false"
         android:textColor="#FFFFFF"
         app:layout_constraintBaseline_toBaselineOf="@+id/clinical_button"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/clinical_button"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
 
-        android:background="@drawable/button_selector"
-        android:text="clinical"
+        android:background="@drawable/button_unfocused"
+        android:text="Clinical"
+        android:textAllCaps="false"
         android:textColor="#FFFFFF"
         app:layout_constraintBaseline_toBaselineOf="@+id/all_button"
         app:layout_constraintEnd_toStartOf="@+id/preclinical_button"

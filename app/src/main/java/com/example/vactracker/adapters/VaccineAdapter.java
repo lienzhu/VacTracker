@@ -54,6 +54,7 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
     public static class VaccineHolder extends RecyclerView.ViewHolder {
 
         private TextView developer;
+        private TextView tvType;
         private TextView stage;
         public View view;
         private ImageView stageIcon;
@@ -63,6 +64,7 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
 
             developer = itemView.findViewById(R.id.developer);
             stage = itemView.findViewById(R.id.stage);
+            tvType = itemView.findViewById(R.id.tvType);
             stageIcon = itemView.findViewById(R.id.stage_icon);
             view = itemView;
 
@@ -79,8 +81,9 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
         Obj currentObj = results.get(position);
 
 
-        holder.developer.setText(currentObj.getDeveloper());
+        holder.developer.setText(currentObj.getDeveloper().toString().split("(/)|(,)")[0]);
         holder.stage.setText(currentObj.getStageOfDevelopment());
+        holder.tvType.setText(currentObj.getProductType());
 
         if(currentObj.getStageOfDevelopment().equals("Pre-clincial") || currentObj.getStageOfDevelopment().equals("Pre-Clincial") || currentObj.getStageOfDevelopment().equals("Pre-clinical") || currentObj.getStageOfDevelopment().equals("Pre-Clinical")){
             holder.stageIcon.setImageResource(holder.itemView.getResources().getIdentifier("preclinical","drawable","com.example.vactracker"));

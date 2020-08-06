@@ -1,6 +1,7 @@
 package com.example.vactracker.ui.vaccines;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -79,9 +80,13 @@ public class VaccinesFragment extends Fragment {
          final Button allButton = root.findViewById(R.id.all_button);
         final Button preclinicalButton = root.findViewById(R.id.preclinical_button);
         final Button clinicalButton = root.findViewById(R.id.clinical_button);
-        allButton.setBackgroundColor(allButton.getContext().getResources().getColor(R.color.colorPrimary));
-        clinicalButton.setBackgroundColor(clinicalButton.getContext().getResources().getColor(R.color.lightpurple));
-        preclinicalButton.setBackgroundColor(preclinicalButton.getContext().getResources().getColor(R.color.lightpurple));
+
+        allButton.setBackgroundResource(R.drawable.button_focus);
+        clinicalButton.setBackgroundResource(R.drawable.button_unfocused);
+        preclinicalButton.setBackgroundResource(R.drawable.button_unfocused);
+        allButton.setTextColor(Color.WHITE);
+        preclinicalButton.setTextColor(Color.DKGRAY);
+        clinicalButton.setTextColor(Color.DKGRAY);
 
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -98,9 +103,12 @@ public class VaccinesFragment extends Fragment {
 
                 mRvList.setAdapter(vaccineAdapter);
 
-                preclinicalButton.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
-                allButton.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lightpurple));
-                clinicalButton.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lightpurple));
+                allButton.setBackgroundResource(R.drawable.button_unfocused);
+                clinicalButton.setBackgroundResource(R.drawable.button_unfocused);
+                preclinicalButton.setBackgroundResource(R.drawable.button_focus);
+                allButton.setTextColor(Color.DKGRAY);
+                preclinicalButton.setTextColor(Color.WHITE);
+                clinicalButton.setTextColor(Color.DKGRAY);
             }
 
 
@@ -113,9 +121,13 @@ public class VaccinesFragment extends Fragment {
                 vaccineAdapter = new VaccineAdapter(mDb.objDAO().getClinicalObjs());
 
                 mRvList.setAdapter(vaccineAdapter);
-                clinicalButton.setBackgroundColor(clinicalButton.getContext().getResources().getColor(R.color.colorPrimary));
-                allButton.setBackgroundColor(allButton.getContext().getResources().getColor(R.color.lightpurple));
-                preclinicalButton.setBackgroundColor(preclinicalButton.getContext().getResources().getColor(R.color.lightpurple));
+
+                allButton.setBackgroundResource(R.drawable.button_unfocused);
+                clinicalButton.setBackgroundResource(R.drawable.button_focus);
+                preclinicalButton.setBackgroundResource(R.drawable.button_unfocused);
+                allButton.setTextColor(Color.DKGRAY);
+                preclinicalButton.setTextColor(Color.DKGRAY);
+                clinicalButton.setTextColor(Color.WHITE);
             }
         });
 
@@ -126,9 +138,13 @@ public class VaccinesFragment extends Fragment {
                 vaccineAdapter = new VaccineAdapter(mDb.objDAO().getObjs());
 
                 mRvList.setAdapter(vaccineAdapter);
-                allButton.setBackgroundColor(allButton.getContext().getResources().getColor(R.color.colorPrimary));
-                clinicalButton.setBackgroundColor(clinicalButton.getContext().getResources().getColor(R.color.lightpurple));
-                preclinicalButton.setBackgroundColor(preclinicalButton.getContext().getResources().getColor(R.color.lightpurple));
+
+                allButton.setBackgroundResource(R.drawable.button_focus);
+                clinicalButton.setBackgroundResource(R.drawable.button_unfocused);
+                preclinicalButton.setBackgroundResource(R.drawable.button_unfocused);
+                allButton.setTextColor(Color.WHITE);
+                preclinicalButton.setTextColor(Color.DKGRAY);
+                clinicalButton.setTextColor(Color.DKGRAY);
             }
         });
 
@@ -141,30 +157,10 @@ public class VaccinesFragment extends Fragment {
         protected List<Obj> doInBackground(Void... voids) {
             try {
 
-                //API Methods
-                //Retrofit converts the HTTP API into a Java interface
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("https://api.c3.ai")
-                        .addConverterFactory(ScalarsConverterFactory.create())
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                Log.d(TAG, "onBuild: SUCCESS");
+                List<Obj> objs = mDb.objDAO().getObjs();
 
-                String filter = "{   \"spec\": {     \"filter\": \"therapyType == 'Vaccine' && target == 'COVID-19'\"} }";
-
-                //Call from the created DataService class can make a HTTP request to the remote C3.ai server.
-                service = retrofit.create(DataService.class);
-
-                RequestBody body = RequestBody.create(MediaType.parse("text/plain"), filter);
-                Call<Vaccine> call = service.sendData(body);
-                Response<Vaccine> response = call.execute();
-                List<Obj> objs = response.body().getObjs();
-
-                //replacing all values in DB
-                mDb.objDAO().deleteAll(mDb.objDAO().getObjs().toArray(new Obj[mDb.objDAO().getObjs().size()]));
-                mDb.objDAO().insertAll(objs.toArray(new Obj[objs.size()]));
                 return objs;
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 return null;
             }
