@@ -7,10 +7,16 @@
 
     <color name="colorPrimaryDark">#6200EE</color>
     <color name="colorPrimaryDark2">#3700B3</color>
+    <color name="colorPurpleLight">#9E99FF</color>
+    <color name="colorPurpleLight2">#C5C2FF</color>
+
+
     <color name="colorAccent">#03DAC5</color>
+
 
     <color name="colorBackgroundBlueAlt">#A7D0F1</color>
     <color name="colorBlueDark">#0E71FB</color>
+
 
     <color name="jungleGreen">#24988D</color>
     <color name="surfieGreen">#128176</color>

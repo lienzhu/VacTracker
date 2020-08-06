@@ -111,21 +111,21 @@ public class HomeFragment extends Fragment {
         buttonVaccine1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tvVaccineName.setText("Oral Polio Vaccine (Phase III)");
+                tvVaccineName.setText("Oral Polio Vaccine (Phase II)");
                 tvVaccineDescription.setText("The oral polio vaccine is an attenuated strain of the virus that causes poliomyelitis.");
             }
         });
         buttonVaccine2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tvVaccineName.setText("Bacille Calmette-Guerin (Phase III)");
-                tvVaccineDescription.setText("The Bacille Calmette-Guerin is a live attenuated vaccine comprised of the bacteria that causes bovine tuberculosis.");
+                tvVaccineName.setText("Bacille Calmette-Guerin (Phase II)");
+                tvVaccineDescription.setText("The BCG is a live attenuated vaccine comprised of the bacteria that causes bovine tuberculosis.");
             }
         });
         buttonVaccine3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tvVaccineName.setText("Measles-Mumps-Rubella Vaccine (Phase III)");
+                tvVaccineName.setText("Measles-Mumps-Rubella Vaccine (Phase II)");
                 tvVaccineDescription.setText("The measles-mumps-rubella (MMR) vaccine is comprised of live-attenuated strains of these viruses.");
             }
         });

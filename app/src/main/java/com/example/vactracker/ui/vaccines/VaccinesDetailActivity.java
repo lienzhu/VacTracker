@@ -49,7 +49,7 @@ public class VaccinesDetailActivity extends AppCompatActivity {
                 ((TextView) findViewById(R.id.stage)).setText(vaccineObject.getStageOfDevelopment());
             }
             title = findViewById(R.id.title);
-            title.setText(vaccineObject.getDeveloper());
+            title.setText(vaccineObject.getDeveloper().toString().split("(/)|(,)")[0]);
 
         }
 
