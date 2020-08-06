@@ -2,6 +2,7 @@ package com.example.vactracker;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -59,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        SharedPreferences prefs = getSharedPreferences("prefs",MODE_PRIVATE);
+        boolean firstStart = prefs.getBoolean("firstStart",true);
+        if(firstStart){
+            introPage();
+        }
 
 
         mapServiceCheck();
@@ -198,5 +204,13 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+    private void introPage() {
 
+        startActivity(new Intent(MainActivity.this, Tutorial.class));
+
+        SharedPreferences prefs = getSharedPreferences("prefs",MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("firstStart",false);
+        editor.apply();
+    }
 }

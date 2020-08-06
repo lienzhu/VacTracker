@@ -60,14 +60,14 @@ public class Tutorial extends AppCompatActivity {
         for(int i = 0; i < mDots.length; i++) {
             mDots[i] = new TextView(this);
             mDots[i].setText(Html.fromHtml("&#8226"));
-            mDots[i].setTextColor(getResources().getColor(R.color.colorPrimary));
+            mDots[i].setTextColor(getResources().getColor(R.color.lightpurple));
             mDots[i].setTextSize(35);
 
             mDotLayout.addView(mDots[i]);
         }
 
         if(mDots.length > 0){
-            mDots[position].setTextColor(getResources().getColor(R.color.lightpurple));
+            mDots[position].setTextColor(getResources().getColor(R.color.colorPrimary));
         }
     }
 

@@ -23,10 +23,10 @@ public class SliderAdapter extends PagerAdapter {
     }
 
     public int[] slide_images = {
-//            R.drawable.npcdefault,
-//            R.drawable.appscreenshotadventure,
-//            R.drawable.appscreenshotfeatured,
-//            R.drawable.appscreenshotprofile,
+            R.drawable.slider1,
+            R.drawable.slider2,
+            R.drawable.slider3,
+            R.drawable.slider4,
 
     };
 

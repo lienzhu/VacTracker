@@ -5,25 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundBlue"
-    android:backgroundTint="@color/lightpurple"
+    android:backgroundTint="@color/colorBackgroundBlue"
     tools:context=".Tutorial">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.8"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="414dp"
+        android:layout_height="845dp"
         android:alpha="0.95"
 
         android:background="@color/colorBackgroundBlue"
@@ -36,21 +24,22 @@
             android:id="@+id/dotLayout"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@+id/viewPager"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"></LinearLayout>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewPager"></LinearLayout>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
-            android:layout_width="0dp"
-            android:layout_height="550dp"
+            android:layout_width="412dp"
+            android:layout_height="486dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.298" />
 
         <Button
             android:id="@+id/finishInstructions"
@@ -58,22 +47,24 @@
             android:layout_height="35dp"
             android:layout_marginBottom="15dp"
 
-            android:text="Finish"
+            android:background="@drawable/button_unfocused"
+            android:text="START"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewPager"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/dotLayout"
+            app:layout_constraintVertical_bias="0.275" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="145dp"
-        android:layout_height="100dp"
+        android:id="@+id/imageView9"
+        android:layout_width="183dp"
+        android:layout_height="91dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.62"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/covaclogo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
