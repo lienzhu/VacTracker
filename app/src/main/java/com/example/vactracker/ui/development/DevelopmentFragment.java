@@ -129,7 +129,7 @@ public class DevelopmentFragment extends Fragment {
                     //System.out.println(nextStepsDB);
                 } else if ((nextStepsDB.contains("Phase 3"))) {
                     vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
-                    vaccineDevelopmentArrayPhase.add(6);
+                    vaccineDevelopmentArrayPhase.add(8);
                 }
             }
         }
@@ -139,10 +139,10 @@ public class DevelopmentFragment extends Fragment {
             if (nextStepsDB != null) {
                 if (nextStepsDB.contains("Phase 2/3") && !mDb.objDAO().getObjs().get(i).getDeveloper().contains("Moderna"))  {
                     vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
-                    vaccineDevelopmentArrayPhase.add(6);
+                    vaccineDevelopmentArrayPhase.add(7);
                 } else if (nextStepsDB.contains("Phase 2") && !mDb.objDAO().getObjs().get(i).getDeveloper().contains("Moderna")) {
                     vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
-                    vaccineDevelopmentArrayPhase.add(4);
+                    vaccineDevelopmentArrayPhase.add(6);
                 }
             }
         }
