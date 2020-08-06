@@ -31,10 +31,10 @@ public class SliderAdapter extends PagerAdapter {
     };
 
     public String [] slide_descs = {
-            "Welcome to CoVac - a mobile application aimed at providing authentic, up-to-date information relating to COVID-19 vaccine development.",
-            "See progress made within COVID-19 vaccine development, the leading candidates and relevant news articles. ",
-            "See further details regarding each vaccine and its development process.",
-            "Support progress within this field by donating (all proceeds will contribute to the Word Health Organisation's COVID-19 Response Fund)."
+            "Welcome to CoVac! \n This app delivers authentic, up-to-date information on the COVID-19 vaccine development landscape.",
+            "Track the progress of COVID-19 vaccines in development, the leading vaccine candidates and relevant news articles. ",
+            "Dive into the details of each vaccine and clinical trial with our search features. ",
+            "Support the global race to find a vaccine by donating. \n(All proceeds will contribute to the World Health Organisation's COVID-19 Response Fund)."
     };
 
 
