@@ -30,14 +30,12 @@ public class SliderAdapter extends PagerAdapter {
 
     };
 
-    public String [] slide_descs = {
+    public String[] slide_descs = {
             "Welcome to CoVac! \n This app delivers authentic, up-to-date information on the COVID-19 vaccine development landscape.",
             "Track the progress of COVID-19 vaccines in development, the leading vaccine candidates and relevant news articles. ",
             "Dive into the details of each vaccine and clinical trial with our search features. ",
             "Support the global race to find a vaccine by donating. \n(All proceeds will contribute to the World Health Organisation's COVID-19 Response Fund)."
     };
-
-
 
 
     @Override
@@ -49,8 +47,9 @@ public class SliderAdapter extends PagerAdapter {
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == (ConstraintLayout) object;
     }
+
     @Override
-    public Object instantiateItem(ViewGroup container, int position){
+    public Object instantiateItem(ViewGroup container, int position) {
         layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.slide_layout, container, false);
 
@@ -65,13 +64,11 @@ public class SliderAdapter extends PagerAdapter {
         return view;
 
 
-
     }
 
-    public void destroyItem(ViewGroup container, int position, Object object){
-        container.removeView((ConstraintLayout)object);
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView((ConstraintLayout) object);
     }
-
 
 
 }

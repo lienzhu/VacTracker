@@ -24,6 +24,7 @@ public class VaccinesDetailActivity extends AppCompatActivity {
     private TextView title;
     public FloatingActionButton googleSearch;
     private ImageView stageDevIcon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,7 @@ public class VaccinesDetailActivity extends AppCompatActivity {
             Intent intent = getIntent();
             String id = intent.getStringExtra(VaccinesFragment.EXTRA_MESSAGE);
             vaccineObject = mDb.objDAO().getObj(id);
-            if(vaccineObject.getStageOfDevelopment() == null) {
+            if (vaccineObject.getStageOfDevelopment() == null) {
                 ((TextView) findViewById(R.id.stage)).setText("Unknown");
             } else {
                 ((TextView) findViewById(R.id.stage)).setText(vaccineObject.getStageOfDevelopment());
@@ -55,23 +56,24 @@ public class VaccinesDetailActivity extends AppCompatActivity {
 
         stageDevIcon = findViewById(R.id.stagedev_icon);
 
-        if(vaccineObject.getStageOfDevelopment().equals("Pre-clincial") || vaccineObject.getStageOfDevelopment().equals("Pre-Clincial") || vaccineObject.getStageOfDevelopment().equals("Pre-clinical") || vaccineObject.getStageOfDevelopment().equals("Pre-Clinical")){
-            stageDevIcon.setImageResource(getResources().getIdentifier("preclinical","drawable","com.example.vactracker"));
+        if (vaccineObject.getStageOfDevelopment().equals("Pre-clincial") || vaccineObject.getStageOfDevelopment().equals("Pre-Clincial") || vaccineObject.getStageOfDevelopment().equals("Pre-clinical") || vaccineObject.getStageOfDevelopment().equals("Pre-Clinical")) {
+            stageDevIcon.setImageResource(getResources().getIdentifier("preclinical", "drawable", "com.example.vactracker"));
         } else {
-            stageDevIcon.setImageResource(getResources().getIdentifier("clinical","drawable","com.example.vactracker"));
+            stageDevIcon.setImageResource(getResources().getIdentifier("clinical", "drawable", "com.example.vactracker"));
         }
 
         googleSearch = findViewById(R.id.google_search);
-                googleSearch.setOnClickListener(new View.OnClickListener() {
+        googleSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 searchVaccine(vaccineObject.getDeveloper());
             }
         });
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 return true;

@@ -45,8 +45,7 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
     }
 
 
-
-    public VaccineAdapter(List<Obj> vaccines){
+    public VaccineAdapter(List<Obj> vaccines) {
         results = vaccines;
         resultsFull = new ArrayList<>(vaccines);
     }
@@ -75,7 +74,6 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
     }
 
 
-
     @Override
     public void onBindViewHolder(@NonNull final VaccineHolder holder, final int position) {
         Obj currentObj = results.get(position);
@@ -85,23 +83,18 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
         holder.stage.setText(currentObj.getStageOfDevelopment());
         holder.tvType.setText(currentObj.getProductType());
 
-        if(currentObj.getStageOfDevelopment().equals("Pre-clincial") || currentObj.getStageOfDevelopment().equals("Pre-Clincial") || currentObj.getStageOfDevelopment().equals("Pre-clinical") || currentObj.getStageOfDevelopment().equals("Pre-Clinical")){
-            holder.stageIcon.setImageResource(holder.itemView.getResources().getIdentifier("preclinical","drawable","com.example.vactracker"));
+        if (currentObj.getStageOfDevelopment().equals("Pre-clincial") || currentObj.getStageOfDevelopment().equals("Pre-Clincial") || currentObj.getStageOfDevelopment().equals("Pre-clinical") || currentObj.getStageOfDevelopment().equals("Pre-Clinical")) {
+            holder.stageIcon.setImageResource(holder.itemView.getResources().getIdentifier("preclinical", "drawable", "com.example.vactracker"));
             holder.stage.setText("Pre-clinical");
         } else {
-            holder.stageIcon.setImageResource(holder.itemView.getResources().getIdentifier("clinical","drawable","com.example.vactracker"));
+            holder.stageIcon.setImageResource(holder.itemView.getResources().getIdentifier("clinical", "drawable", "com.example.vactracker"));
         }
 
 
-
-        holder.view.setOnClickListener(new View.OnClickListener(){
+        holder.view.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-//                VaccinesDetailFragment vaccinesDetailFragment = new VaccinesDetailFragment();
-//                Bundle bundle = new Bundle();
-//                bundle.putString("id",currentObj.getId());
-//                vaccinesDetailFragment.setArguments(bundle);
 
                 Context context = v.getContext();
                 Intent intent = new Intent(context, VaccinesDetailActivity.class);
@@ -109,7 +102,7 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
                 context.startActivity(intent);
 
 
-        }
+            }
         });
 
     }
@@ -126,7 +119,7 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
     }
 
     @Override
-    public Filter getFilter(){
+    public Filter getFilter() {
         return filter;
     }
 
@@ -136,13 +129,13 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Obj> filteredList = new ArrayList<>();
 
-            if(constraint == null || constraint.length() == 0) {
+            if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(resultsFull);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 for (Obj obj : resultsFull) {
-                    if(obj.getDeveloper().toLowerCase().contains(filterPattern)) {
+                    if (obj.getDeveloper().toLowerCase().contains(filterPattern)) {
                         filteredList.add(obj);
                     }
                 }
@@ -158,7 +151,7 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
         protected void publishResults(CharSequence constraint, FilterResults filterResults) {
 
             results.clear();
-            results.addAll((List)filterResults.values);
+            results.addAll((List) filterResults.values);
             notifyDataSetChanged();
 
         }

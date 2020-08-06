@@ -88,7 +88,6 @@ public class SupportFragment extends Fragment {
         });
 
 
-
         donate10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

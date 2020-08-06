@@ -38,13 +38,11 @@ public class Meta {
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public Meta() {
     }
 
     /**
-     *
      * @param fetchInclude
      * @param updatedBy
      * @param createdBy

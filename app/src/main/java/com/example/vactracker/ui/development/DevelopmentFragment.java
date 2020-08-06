@@ -12,22 +12,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.room.Room;
 
 import com.example.vactracker.AppDatabase;
 import com.example.vactracker.R;
 import com.example.vactracker.ui.MapFragment;
 import com.example.vactracker.ui.data.Obj;
-import com.example.vactracker.ui.vaccines.VaccinesDetailActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-
 import java.util.Map;
-
-import static java.lang.Double.valueOf;
 
 public class DevelopmentFragment extends Fragment {
 
@@ -60,13 +55,12 @@ public class DevelopmentFragment extends Fragment {
     private AppDatabase mDb;
 
 
-    DevelopmentViewModel developmentViewModel;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        developmentViewModel = ViewModelProviders.of(this).get(DevelopmentViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_development, container,false);
+        ;
+        View root = inflater.inflate(R.layout.fragment_development, container, false);
 
         mDb = Room.databaseBuilder(getContext(), AppDatabase.class, "app-database").allowMainThreadQueries().fallbackToDestructiveMigration()
                 .build();
@@ -94,39 +88,35 @@ public class DevelopmentFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Fragment mapFrag= new MapFragment();
+                Fragment mapFrag = new MapFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .add(R.id.nav_host_fragment, mapFrag, "findThisFragment")
                         .addToBackStack(null)
                         .commit();
 
-                //getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-
             }
         });
         buttonVaccineType = root.findViewById(R.id.buttonVaccineType);
-        buttonVaccineType.setOnClickListener(new View.OnClickListener(){
-        @Override
+        buttonVaccineType.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
 
-            Intent intent = new Intent(getActivity(), VaccineTypeActivity.class);
-            startActivity(intent);
+                Intent intent = new Intent(getActivity(), VaccineTypeActivity.class);
+                startActivity(intent);
 
             }
         });
 
         ArrayList<String> vaccineDevelopmentArray = new ArrayList<String>();
         ArrayList<Integer> vaccineDevelopmentArrayPhase = new ArrayList<Integer>();
-//System.out.println("Size of db obj: " + mDb.objDAO().getObjs().size());
 
-//vaccineObject = mDb.objDAO().getObjs().get(position);
-        for (int i = 0; i<mDb.objDAO().getObjs().size(); i++) {
+        for (int i = 0; i < mDb.objDAO().getObjs().size(); i++) {
             String nextStepsDB = mDb.objDAO().getObjs().get(i).getNextSteps();
             if (nextStepsDB != null) {
                 if (nextStepsDB.contains("Phase 4")) {
                     vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
                     vaccineDevelopmentArrayPhase.add(8);
-                    //System.out.println(nextStepsDB);
+
                 } else if ((nextStepsDB.contains("Phase 3"))) {
                     vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
                     vaccineDevelopmentArrayPhase.add(8);
@@ -134,10 +124,10 @@ public class DevelopmentFragment extends Fragment {
             }
         }
 
-        for (int i = 0; i<mDb.objDAO().getObjs().size(); i++) {
+        for (int i = 0; i < mDb.objDAO().getObjs().size(); i++) {
             String nextStepsDB = mDb.objDAO().getObjs().get(i).getNextSteps();
             if (nextStepsDB != null) {
-                if (nextStepsDB.contains("Phase 2/3") && !mDb.objDAO().getObjs().get(i).getDeveloper().contains("Moderna"))  {
+                if (nextStepsDB.contains("Phase 2/3") && !mDb.objDAO().getObjs().get(i).getDeveloper().contains("Moderna")) {
                     vaccineDevelopmentArray.add(mDb.objDAO().getObjs().get(i).getDeveloper());
                     vaccineDevelopmentArrayPhase.add(7);
                 } else if (nextStepsDB.contains("Phase 2") && !mDb.objDAO().getObjs().get(i).getDeveloper().contains("Moderna")) {
@@ -150,10 +140,10 @@ public class DevelopmentFragment extends Fragment {
         System.out.println(vaccineDevelopmentArray);
         System.out.println(vaccineDevelopmentArrayPhase);
 
-//Cleaning the display data and setting TextViews
-        for (int n =0; n<vaccineDevelopmentArray.size();n++){
+        //Cleaning the display data and setting TextViews
+        for (int n = 0; n < vaccineDevelopmentArray.size(); n++) {
             String cleanTitle = vaccineDevelopmentArray.get(n).toString().split("(/)|(,)")[0];
-            vaccineDevelopmentArray.set(n,cleanTitle);
+            vaccineDevelopmentArray.set(n, cleanTitle);
         }
 
         tvCandidate1.setText(vaccineDevelopmentArray.get(0));
@@ -181,7 +171,8 @@ public class DevelopmentFragment extends Fragment {
 
         //Types of vaccines
         int countDNA = mDb.objDAO().getCountProductType("DNA-based");
-        int countInactiveVirus = mDb.objDAO().getCountProductType("Inactivated virus");;
+        int countInactiveVirus = mDb.objDAO().getCountProductType("Inactivated virus");
+        ;
         int countLiveVirus = mDb.objDAO().getCountProductType("Live attenuated virus");
         int countNonRepViralVector = mDb.objDAO().getCountProductType("Non-replicating viral vector");
         int countProtein = mDb.objDAO().getCountProductType("Protein Subunit");
@@ -191,40 +182,30 @@ public class DevelopmentFragment extends Fragment {
         int countUnknown = mDb.objDAO().getCountProductType("Unknown");
 
 
-        System.out.println(mDb.objDAO().getObjs().get(0).getProductType());
-
-        System.out.println("DNA types: " + countDNA);
-
-        HashMap<String,Integer> vaccineMap = new HashMap<String,Integer>();
-        vaccineMap.put("DNA-based",countDNA);
-        vaccineMap.put("Inactivated Virus",countInactiveVirus);
-        vaccineMap.put("Live Attenuated Virus",countLiveVirus);
-        vaccineMap.put("Non-replicating Virus",countNonRepViralVector);
-        vaccineMap.put("Protein Subunit",countProtein);
-        vaccineMap.put("Replicating Viral Vector",countRepViralVector);
-        vaccineMap.put("RNA-based",countRNA);
-        vaccineMap.put("Virus-like Particle",countVirusLike);
-        vaccineMap.put("Unknown",countUnknown);
+        HashMap<String, Integer> vaccineMap = new HashMap<String, Integer>();
+        vaccineMap.put("DNA-based", countDNA);
+        vaccineMap.put("Inactivated Virus", countInactiveVirus);
+        vaccineMap.put("Live Attenuated Virus", countLiveVirus);
+        vaccineMap.put("Non-replicating Virus", countNonRepViralVector);
+        vaccineMap.put("Protein Subunit", countProtein);
+        vaccineMap.put("Replicating Viral Vector", countRepViralVector);
+        vaccineMap.put("RNA-based", countRNA);
+        vaccineMap.put("Virus-like Particle", countVirusLike);
+        vaccineMap.put("Unknown", countUnknown);
 
         //Sum all the vaccine type counts
         double sum = countDNA + countInactiveVirus + countLiveVirus + countNonRepViralVector +
                 countProtein + countRepViralVector + countRNA + countVirusLike + countUnknown;
-        System.out.println(sum);
 
-        int maxValueInMap=(Collections.max(vaccineMap.values()));  // This will return max value in the Hashmap
+        int maxValueInMap = (Collections.max(vaccineMap.values()));  // This will return max value in the Hashmap
         for (Map.Entry<String, Integer> entry : vaccineMap.entrySet()) { // Iterate through hashmap
-                 //sum = sum + entry.getValue(); //Sum of all vaccine type counts
 
-            if (entry.getValue()==maxValueInMap) {
-                System.out.println(entry.getKey());     // Print the key with max value
-                System.out.println(entry.getValue());
-                System.out.println("Sum is: " + sum);
-                System.out.println(String.valueOf((entry.getValue()/sum)));
-                double percentage = (entry.getValue()/sum)*100;
+            if (entry.getValue() == maxValueInMap) {
+
+                double percentage = (entry.getValue() / sum) * 100;
                 int percentageInt = (int) percentage;
 
                 tvVaccineType.setText(entry.getKey().toString());
-                //tvVaccineTypeValue.setText(String.valueOf((entry.getValue()/sum)));
                 tvVaccineTypeValue.setText(String.valueOf(percentageInt));
 
                 progressBarCircle.setIndeterminate(false);
@@ -233,8 +214,6 @@ public class DevelopmentFragment extends Fragment {
                 progressBarCircle.setProgress(percentageInt);
             }
         }
-
-        System.out.println(vaccineMap);
 
         return root;
     }

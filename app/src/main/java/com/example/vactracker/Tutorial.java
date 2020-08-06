@@ -53,11 +53,11 @@ public class Tutorial extends AppCompatActivity {
 
     }
 
-    public void addDotsIndicator(int position){
+    public void addDotsIndicator(int position) {
         mDots = new TextView[4];
         mDotLayout.removeAllViews();
 
-        for(int i = 0; i < mDots.length; i++) {
+        for (int i = 0; i < mDots.length; i++) {
             mDots[i] = new TextView(this);
             mDots[i].setText(Html.fromHtml("&#8226"));
             mDots[i].setTextColor(getResources().getColor(R.color.lightpurple));
@@ -66,7 +66,7 @@ public class Tutorial extends AppCompatActivity {
             mDotLayout.addView(mDots[i]);
         }
 
-        if(mDots.length > 0){
+        if (mDots.length > 0) {
             mDots[position].setTextColor(getResources().getColor(R.color.colorPrimary));
         }
     }

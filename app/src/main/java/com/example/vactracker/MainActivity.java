@@ -54,15 +54,16 @@ public class MainActivity extends AppCompatActivity {
 
     private DataService service;
     private AppDatabase mDb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        SharedPreferences prefs = getSharedPreferences("prefs",MODE_PRIVATE);
-        boolean firstStart = prefs.getBoolean("firstStart",true);
-        if(firstStart){
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        boolean firstStart = prefs.getBoolean("firstStart", true);
+        if (firstStart) {
             introPage();
         }
 
@@ -88,12 +89,14 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -108,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -116,8 +120,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class GetObjTask extends AsyncTask<Void, Void, List<Obj>> {
-            @Override
-            protected List<Obj> doInBackground(Void... voids) {
+        @Override
+        protected List<Obj> doInBackground(Void... voids) {
             try {
 
                 //API Method
@@ -146,30 +150,30 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "doInBackground: Added");
 
                 //Updating product type attributes in the database
-                for (int j = 0; j<mDb.objDAO().getObjs().size(); j++) {
+                for (int j = 0; j < mDb.objDAO().getObjs().size(); j++) {
 
                     String vaccineType = mDb.objDAO().getObjs().get(j).getDescription();
 
-                    if (vaccineType.contains("DNA")){
-                        mDb.objDAO().updateProductType("DNA-based",mDb.objDAO().getObjs().get(j).getId());
-                    } else if (vaccineType.contains("Non-replicating")){
-                        mDb.objDAO().updateProductType("Non-replicating viral vector",mDb.objDAO().getObjs().get(j).getId());
-                    } else if (vaccineType.contains("virus-like")){
-                        mDb.objDAO().updateProductType("Virus-like particle",mDb.objDAO().getObjs().get(j).getId());
-                    } else if (vaccineType.contains("Inactiv")){
-                        mDb.objDAO().updateProductType("Inactivated virus",mDb.objDAO().getObjs().get(j).getId());
-                    } else if (vaccineType.contains("attenuated")){
-                        mDb.objDAO().updateProductType("Live attenuated virus",mDb.objDAO().getObjs().get(j).getId());
+                    if (vaccineType.contains("DNA")) {
+                        mDb.objDAO().updateProductType("DNA-based", mDb.objDAO().getObjs().get(j).getId());
+                    } else if (vaccineType.contains("Non-replicating")) {
+                        mDb.objDAO().updateProductType("Non-replicating viral vector", mDb.objDAO().getObjs().get(j).getId());
+                    } else if (vaccineType.contains("virus-like")) {
+                        mDb.objDAO().updateProductType("Virus-like particle", mDb.objDAO().getObjs().get(j).getId());
+                    } else if (vaccineType.contains("Inactiv")) {
+                        mDb.objDAO().updateProductType("Inactivated virus", mDb.objDAO().getObjs().get(j).getId());
+                    } else if (vaccineType.contains("attenuated")) {
+                        mDb.objDAO().updateProductType("Live attenuated virus", mDb.objDAO().getObjs().get(j).getId());
                     } else if (vaccineType.contains("subunit")) {
-                        mDb.objDAO().updateProductType("Protein Subunit",mDb.objDAO().getObjs().get(j).getId());
-                    } else if (vaccineType.contains("RNA")){
-                        mDb.objDAO().updateProductType("RNA-based",mDb.objDAO().getObjs().get(j).getId());
-                    } else if (vaccineType.contains("Replicating")){
-                        mDb.objDAO().updateProductType("Replicating viral vector",mDb.objDAO().getObjs().get(j).getId());
-                    } else if (vaccineType.contains("other")){
-                        mDb.objDAO().updateProductType("Other Vaccine Type",mDb.objDAO().getObjs().get(j).getId());
-                    } else if (vaccineType.contains("Unknown")){
-                        mDb.objDAO().updateProductType("Unknown",mDb.objDAO().getObjs().get(j).getId());
+                        mDb.objDAO().updateProductType("Protein Subunit", mDb.objDAO().getObjs().get(j).getId());
+                    } else if (vaccineType.contains("RNA")) {
+                        mDb.objDAO().updateProductType("RNA-based", mDb.objDAO().getObjs().get(j).getId());
+                    } else if (vaccineType.contains("Replicating")) {
+                        mDb.objDAO().updateProductType("Replicating viral vector", mDb.objDAO().getObjs().get(j).getId());
+                    } else if (vaccineType.contains("other")) {
+                        mDb.objDAO().updateProductType("Other Vaccine Type", mDb.objDAO().getObjs().get(j).getId());
+                    } else if (vaccineType.contains("Unknown")) {
+                        mDb.objDAO().updateProductType("Unknown", mDb.objDAO().getObjs().get(j).getId());
                     }
 
                 }
@@ -187,30 +191,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public boolean mapServiceCheck(){
+    public boolean mapServiceCheck() {
 
         int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MainActivity.this);
 
-        if (available == ConnectionResult.SUCCESS){
+        if (available == ConnectionResult.SUCCESS) {
             //everything is fine
             Log.d(TAG, "mapServiceCheck: Google Play Services is working");
             return true;
-        }else if (GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+        } else if (GoogleApiAvailability.getInstance().isUserResolvableError(available)) {
             //Error occured by fixable
             Log.d(TAG, "mapServiceCheck: Google Play Services is not working, but we can fix it");
 
-        }else {
+        } else {
             Log.d(TAG, "Can't make map requests");
         }
         return false;
     }
+
     private void introPage() {
 
         startActivity(new Intent(MainActivity.this, Tutorial.class));
 
-        SharedPreferences prefs = getSharedPreferences("prefs",MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putBoolean("firstStart",false);
+        editor.putBoolean("firstStart", false);
         editor.apply();
     }
 }

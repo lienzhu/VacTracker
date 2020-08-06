@@ -48,20 +48,17 @@ public class VaccinesFragment extends Fragment {
     private static final String TAG = "Vaccine Fragment";
     private AppDatabase mDb;
     private RecyclerView mRvList;
-//    private Button allButton, preclinicalButton, clinicalButton;
-
 
 
     public static String EXTRA_MESSAGE = "id";
     DataService service;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mDb = Room.databaseBuilder(getContext(), AppDatabase.class, "app-database").allowMainThreadQueries().fallbackToDestructiveMigration()
                 .build();
-
-
 
         //getting values from DB
         new GetObjDBTask().execute();
@@ -76,8 +73,8 @@ public class VaccinesFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_vaccines, container, false);
 
-         mRvList = root.findViewById(R.id.list);
-         final Button allButton = root.findViewById(R.id.all_button);
+        mRvList = root.findViewById(R.id.list);
+        final Button allButton = root.findViewById(R.id.all_button);
         final Button preclinicalButton = root.findViewById(R.id.preclinical_button);
         final Button clinicalButton = root.findViewById(R.id.clinical_button);
 
@@ -191,25 +188,26 @@ public class VaccinesFragment extends Fragment {
         intent.putExtra(String.valueOf(EXTRA_MESSAGE), position);
         startActivity(intent);
     }
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater){
-       menuInflater.inflate(R.menu.search_menu,menu);
-       MenuItem searchItem = menu.findItem(R.id.action_search);
-       SearchView searchView = (SearchView) searchItem.getActionView();
-       searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
-       searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-           @Override
-           public boolean onQueryTextSubmit(String query) {
-               return false;
-           }
 
-           @Override
-           public boolean onQueryTextChange(String newText) {
-               vaccineAdapter.getFilter().filter(newText);
-               return false;
-           }
-       });
-        super.onCreateOptionsMenu(menu,menuInflater);
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
+        menuInflater.inflate(R.menu.search_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                vaccineAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        super.onCreateOptionsMenu(menu, menuInflater);
     }
 
 

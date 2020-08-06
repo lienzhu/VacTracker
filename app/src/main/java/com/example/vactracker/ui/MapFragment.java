@@ -55,18 +55,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     private static final String TAG = "MapFragment";
     private GoogleMap googleMap;
     private MapService service;
-    //private ArrayList<String> locationArray = new ArrayList<>();
-
-    //public ArrayList<String> getLocationArray() { return this.locationArray; }
-    //public void setLocationArray(ArrayList<String> locationArray) { this.locationArray = locationArray; }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
-
-
-    // Inflate the layout for this fragment
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
 
@@ -93,10 +86,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-         ArrayList<String> locationArray = new ArrayList<>();
-         this.googleMap = googleMap;
-          String url = null;
-
+        ArrayList<String> locationArray = new ArrayList<>();
+        this.googleMap = googleMap;
+        String url = null;
 
         //API Methods
         //Retrofit converts the HTTP API into a Java interface
@@ -121,23 +113,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                 if (response.isSuccessful()) {
                     Log.d(TAG, "onResponse: SUCCESS");
 
-
                     Map mapInfo = response.body();
 
-                    //Check response output for City/Country
-                    System.out.println("Location Info: " + mapInfo.getObjs().get(0).getLocation().getId());
-
-                    for (int i =0; i<response.body().getCount();i++){
-                        locationArray.add(mapInfo.getObjs().get(i).getLocation().getId().toString().replace("_",", "));
-
+                    for (int i = 0; i < response.body().getCount(); i++) {
+                        locationArray.add(mapInfo.getObjs().get(i).getLocation().getId().toString().replace("_", ", "));
                     }
-                    System.out.println(locationArray.get(1));
 
-                    System.out.println("Map Ready location: " + locationArray);
-
-                    for (int j =0; j<locationArray.size(); j++) {
+                    for (int j = 0; j < locationArray.size(); j++) {
                         LatLng address = getLocationFromAddress(getActivity().getApplicationContext(), locationArray.get(j));
-                        //LatLng address = getLocationFromAddress(getActivity().getApplicationContext(), "Street Number, Street, Suburb, State, Postcode");
 
                         String[] latlong = "-33.8807699,150.99844460000003".split(",");
                         double latitude = Double.parseDouble(latlong[0]);
@@ -147,21 +130,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                         if (address == null) {
                             address = locationDef;
                         }
+                        //Add marker for locations
                         googleMap.addMarker(new MarkerOptions()
-                                        .position(address)
-                                        .title(mapInfo.getObjs().get(j).getUrl())
-                                        .snippet(
+                                .position(address)
+                                .title(mapInfo.getObjs().get(j).getUrl())
+                                .snippet(
                                         "\n- Vaccine Clinical Trial Details -"
-                                        + "\n\nCity: " + locationArray.get(j)
-                                        + "\nVaccine Trial Status: " + mapInfo.getObjs().get(j).getTrialStatus()
-                                        + "\nPatient Setting: " + mapInfo.getObjs().get(j).getPatientSetting()
-                                        + "\nCOVID-19 Status: " + mapInfo.getObjs().get(j).getCovid19Status()
+                                                + "\n\nCity: " + locationArray.get(j)
+                                                + "\nVaccine Trial Status: " + mapInfo.getObjs().get(j).getTrialStatus()
+                                                + "\nPatient Setting: " + mapInfo.getObjs().get(j).getPatientSetting()
+                                                + "\nCOVID-19 Status: " + mapInfo.getObjs().get(j).getCovid19Status()
 
-                                        + "\n\nClick this view for more details. "
-                                        //+ "\nOutcome: " + mapInfo.getObjs().get(j).getOutcome()
-                                        )
-                                        //.icon(BitmapDescriptorFactory(defaultMarker(BitmapDescriptorFactory.HUE_RED)))
-                                        );
+                                                + "\n\nClick this view for more details. "
+
+                                )
+                        );
 
                         googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
@@ -176,9 +159,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                                 LinearLayout info = new LinearLayout(getContext());
                                 info.setOrientation(LinearLayout.VERTICAL);
 
-
                                 TextView title = new TextView(getContext());
-                                //title.setTextColor(Color.BLACK);
                                 title.setTextColor(Color.TRANSPARENT);
                                 title.setGravity(Gravity.CENTER);
                                 title.setTypeface(null, Typeface.BOLD);
@@ -200,12 +181,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                                 return info;
                             }
                         });
-
+                        //Method to open new Clinical trial webpage with details
                         googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                             @Override
                             public void onInfoWindowClick(Marker marker) {
-                                System.out.println("Marker clicked");
-
                                 String url = marker.getTitle();
                                 Intent i = new Intent(Intent.ACTION_VIEW);
                                 i.setData(Uri.parse(url));
@@ -232,47 +211,41 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
 
         });
-        //return arrayList;
-        //ArrayList<String> mapArray = getMapData();
-
     }
 
     public void onInfoWindowClick(Marker marker) {
-
     }
 
+    //Method to get LatLng from String Address
     public LatLng getLocationFromAddress(Context context, String strAddress) {
 
         Geocoder coder = new Geocoder(context);
         List<Address> address;
         LatLng p1 = null;
 
-        String[] latlong =  "-33.8807699,150.99844460000003".split(",");
+        String[] latlong = "-33.8807699,150.99844460000003".split(",");
         double latitude = Double.parseDouble(latlong[0]);
         double longitude = Double.parseDouble(latlong[1]);
         LatLng locationDef = new LatLng(latitude, longitude);
 
         try {
             // May throw an IOException
-            //address = coder.getFromLocationName(strAddress, 5);
             address = coder.getFromLocationName(strAddress, 2);
             if (address == null) {
                 return (locationDef);
             }
 
             Address location = address.get(0);
-            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+            p1 = new LatLng(location.getLatitude(), location.getLongitude());
             if (p1 == null) {
-                p1=locationDef;
+                p1 = locationDef;
             }
         } catch (IOException ex) {
 
             ex.printStackTrace();
         }
-        //System.out.println(p1);
         return p1;
     }
-
 
 
 }

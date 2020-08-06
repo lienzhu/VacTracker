@@ -31,15 +31,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     private TextView tvNewsDescription;
     private ImageView ivNews;
 
-
-
-
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
-            //Article article = mArticle.get(position);
-
             Context context = v.getContext();
             System.out.println("Click detected");
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
@@ -53,7 +48,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         mArticle = article;
     }
 
-    public static class NewsViewHolder extends RecyclerView.ViewHolder  {
+    public static class NewsViewHolder extends RecyclerView.ViewHolder {
         public TextView description;
         public ImageView image;
 
@@ -79,7 +74,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         Glide.with(holder.itemView).load(article.getUrlToImage()).fitCenter().into(holder.image);
 
         holder.description.setText(article.getTitle().toString());
-        //Log.d(TAG, "onSetText: SUCCESS");
 
         holder.itemView.setTag(article);
         holder.itemView.setOnClickListener(mOnClickListener);
@@ -96,11 +90,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         });
 
 
-
     }
 
     //Clear list, add new list
-    public void setNews(List<Article> article){
+    public void setNews(List<Article> article) {
         mArticle.clear();
         mArticle.addAll(article);
         notifyDataSetChanged();

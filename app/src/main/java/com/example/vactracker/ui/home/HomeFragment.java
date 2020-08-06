@@ -42,7 +42,6 @@ public class HomeFragment extends Fragment {
 
     public static final String ARG_ITEM_ID = "HomeFragment";
     private static final String TAG = "Home Fragment";
-    private HomeViewModel homeViewModel;
     private TextView text_home;
     private TextView tvNumberVaccines;
     private TextView tvNumberVaccinesClinical;
@@ -59,7 +58,7 @@ public class HomeFragment extends Fragment {
     private NewsAdapter mAdapter;
     private List<Article> article;
 
-    private String url ="https://api.c3.ai/covid/api/1/therapeuticasset/fetch";
+    private String url = "https://api.c3.ai/covid/api/1/therapeuticasset/fetch";
 
     private Integer numberVaccines;
     private Integer numberVaccinesClinical = 0;
@@ -70,16 +69,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-//        final TextView textView = root.findViewById(R.id.tvActivityFeed);
-//        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
 
         mDb = Room.databaseBuilder(getContext(), AppDatabase.class, "app-database").allowMainThreadQueries().fallbackToDestructiveMigration()
                 .build();
@@ -157,12 +147,8 @@ public class HomeFragment extends Fragment {
             public void onResponse(Call<News> newsCall, Response<News> responseNews) {
                 if (responseNews.isSuccessful()) {
                     Log.d(TAG, "onResponse: SUCCESS");
-
                     List<Article> news = responseNews.body().getArticles();
-                    //System.out.println("news results: " + news.get(0).getDescription());
-
                     mAdapter.setNews(news);
-
 
                 } else {
                     Log.d(TAG, "onResponse: ERROR IS " + responseNews.body());
@@ -183,13 +169,8 @@ public class HomeFragment extends Fragment {
         mAdapter = new NewsAdapter(this, new ArrayList<Article>());
         mRecyclerView.setAdapter(mAdapter);
 
-
-
         return root;
     }
-
-
-
 
 
 }

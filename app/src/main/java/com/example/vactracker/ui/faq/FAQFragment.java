@@ -20,18 +20,13 @@ public class FAQFragment extends Fragment {
     Button faq1, faq2, faq3, faq4, faq5, faq6, faq7;
 
 
-   FAQViewModel faqViewModel;
-
-   DialogFragment myDialog;
+    DialogFragment myDialog;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-     //   faqViewModel = ViewModelProviders.of(this).get(FAQViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_faq, container,false);
-
-
+        View root = inflater.inflate(R.layout.fragment_faq, container, false);
 
         f = root.findViewById(R.id.text_development);
         faq1 = root.findViewById(R.id.tvQ1);
@@ -43,21 +38,15 @@ public class FAQFragment extends Fragment {
         faq7 = root.findViewById(R.id.tvQ7);
 
 
-
         faq1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Faqpopup1 popup = new Faqpopup1();
                 Bundle args = new Bundle();
-                args.putString("Key","Q1");
+                args.putString("Key", "Q1");
                 popup.setArguments(args);
                 popup.setTargetFragment(FAQFragment.this, 1);
-          /**      popup.tvFAQ.setText("What is the VacTracker?");
-                popup.tvAnswer.setText("The VACTracker App is one-stop-shop for all information relating to the development of the COVID-19 vaccine. \n " +
-                        "The app compiles information from credible news outlets to provide users with access to authentic updates. " +
-                        "\nOur goal is to solve the problem of COVID-19 vaccine information being segregated all over the internet, where reliable sources aren’t always easily accessible. ");
-               **/
                 popup.show(getFragmentManager(), "Faqpopup1");
             }
         });
@@ -69,7 +58,7 @@ public class FAQFragment extends Fragment {
 
                 Faqpopup1 popup = new Faqpopup1();
                 Bundle args = new Bundle();
-                args.putString("Key","Q2");
+                args.putString("Key", "Q2");
                 popup.setArguments(args);
                 popup.setTargetFragment(FAQFragment.this, 1);
                 popup.show(getFragmentManager(), "Faqpopup1");
@@ -82,7 +71,7 @@ public class FAQFragment extends Fragment {
             public void onClick(View v) {
                 Faqpopup1 popup = new Faqpopup1();
                 Bundle args = new Bundle();
-                args.putString("Key","Q3");
+                args.putString("Key", "Q3");
                 popup.setArguments(args);
                 popup.setTargetFragment(FAQFragment.this, 1);
                 popup.show(getFragmentManager(), "Faqpopup1");
@@ -96,7 +85,7 @@ public class FAQFragment extends Fragment {
 
                 Faqpopup1 popup = new Faqpopup1();
                 Bundle args = new Bundle();
-                args.putString("Key","Q4");
+                args.putString("Key", "Q4");
                 popup.setArguments(args);
                 popup.setTargetFragment(FAQFragment.this, 1);
                 popup.show(getFragmentManager(), "Faqpopup1");
@@ -111,7 +100,7 @@ public class FAQFragment extends Fragment {
 
                 Faqpopup1 popup = new Faqpopup1();
                 Bundle args = new Bundle();
-                args.putString("Key","Q5");
+                args.putString("Key", "Q5");
                 popup.setArguments(args);
                 popup.setTargetFragment(FAQFragment.this, 1);
                 popup.show(getFragmentManager(), "Faqpopup1");
@@ -125,7 +114,7 @@ public class FAQFragment extends Fragment {
 
                 Faqpopup1 popup = new Faqpopup1();
                 Bundle args = new Bundle();
-                args.putString("Key","Q6");
+                args.putString("Key", "Q6");
                 popup.setArguments(args);
                 popup.setTargetFragment(FAQFragment.this, 1);
                 popup.show(getFragmentManager(), "Faqpopup1");
@@ -139,7 +128,7 @@ public class FAQFragment extends Fragment {
 
                 Faqpopup1 popup = new Faqpopup1();
                 Bundle args = new Bundle();
-                args.putString("Key","Q7");
+                args.putString("Key", "Q7");
                 popup.setArguments(args);
                 popup.setTargetFragment(FAQFragment.this, 1);
                 popup.show(getFragmentManager(), "Faqpopup1");
@@ -149,17 +138,3 @@ public class FAQFragment extends Fragment {
         return root;
     }
 }
-
-
-/**
-        faqViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                f.setText(s);
-            }
-        });
-
-        return root;
-    }
- **/
-

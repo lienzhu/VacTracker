@@ -22,8 +22,6 @@ public class Faqpopup1 extends DialogFragment {
     TextView tvClose, tvFAQ, tvAnswer;
     Button bExit, bDonate;
 
-    private Faqpopup1ViewModel mViewModel;
-
     public static Faqpopup1 newInstance() {
         return new Faqpopup1();
     }
@@ -60,21 +58,21 @@ public class Faqpopup1 extends DialogFragment {
             }
         });
 
-        if(value == "Q1") {
+        if (value == "Q1") {
             tvFAQ.setText("What is CoVac?");
             Log.d(TAG, "Question1 Displayed");
             tvAnswer.setText("The CoVac App is one-stop-shop for all information relating to the development of the COVID-19 vaccine. \n " +
                     "The app compiles information from credible news outlets to provide users with access to authentic updates. " +
                     "Our goal is to solve the problem of COVID-19 vaccine information being segregated all over the internet, where reliable sources aren’t always easily accessible. ");
             Log.d(TAG, "Question1 Answer");
-        } else if(value == "Q2"){
+        } else if (value == "Q2") {
             Log.d(TAG, "else if Q2");
             tvFAQ.setText("Where is the information from?");
             tvAnswer.setText("The information displayed in CoVac is compiled " +
                     "from various news outlets from the internet. These outlets have been filtered and verified by our team, e" +
                     "nsuring that only authentic information is provided to you.");
 
-        } else if(value == "Q3"){
+        } else if (value == "Q3") {
             tvFAQ.setText("What do the clinical trials mean and how do they work?");
             tvAnswer.setText("Clinical trials describe the process in which new vaccines/drugs are approved to be used and distributed to the general population in order to prevent, diagnose or treat a particular disease. Healthcare professionals including researchers and medical doctors undertake these clinical trials which generally fall into 5 stages. It often takes years or as long as decades for a compound to pass through the clinical trials. The 5 stages include: " +
                     "\n Preclinical:" +
@@ -95,14 +93,14 @@ public class Faqpopup1 extends DialogFragment {
                     "\n" +
                     "Phase IV:\n" +
                     "The purpose of this phase is to monitor long-term effects of the drug on a larger population. At this stage, the therapeutic may be prescribed to individuals in the target population through their physician. Extremely rare side effects may be observed in this stage due to the longer term and a larger subset of the population is using the therapeutic.\n");
-        } else if(value == "Q4"){
+        } else if (value == "Q4") {
             tvFAQ.setText("How does pandemics (such as COVID-19) impact the clinical trials Process?");
             tvAnswer.setText("During a life-threatening situation where there is no vaccine or medicine currently for a particular disease (like during this pandemic), the clinical trial process may be expedited. \n" +
                     "\n" +
                     "As it generally takes years or even as long as decades for the compound to progress through the clinical trials, the process can be fast-tracked to provide medical assistance to those in need. This is usually done for drugs that already display strong potential in combating the disease as they are already effective against related disorders. \n" +
                     "\n" +
                     "To progress faster through the stages, the process will involve more frequent meetings with governing bodies as well as the drug manufacturing company must submit the sections of crucial documents as soon as they are completed as opposed to one submission for every completed stage of the trial. Although this process is fast-tracked, the entire process is still extremely rigorous.\n");
-        } else if(value == "Q5") {
+        } else if (value == "Q5") {
             tvFAQ.setText("What is the meaning of each heading on the Vaccine Profile?");
             tvAnswer.setText("Product Type: Vaccine's drug or platform class \n \n" +
                     "Description: Short description of the vaccine \n \n" +
@@ -110,24 +108,15 @@ public class Faqpopup1 extends DialogFragment {
                     "Stage: The current phase of clinical development \n \n" +
                     "Origin: The source of the data containing the vaccine's research and development details. \n \n " +
                     "Other diseases: Other diseases or pathogens for which the vaccine has undergone or is undergoing clinical developmnent.");
-        } else if(value == "Q6") {
-                tvFAQ.setText("How can I help?");
-                tvAnswer.setText("You can donate on our support page. All proceeds will go to the World Health Organisation's COVID-19 Response Fund" +
-                        "to go toward the development and distribution of a vaccine. \n \nFor further information regarding the COVID-19 Response Fund, please click the button below.");
+        } else if (value == "Q6") {
+            tvFAQ.setText("How can I help?");
+            tvAnswer.setText("You can donate on our support page. All proceeds will go to the World Health Organisation's COVID-19 Response Fund" +
+                    "to go toward the development and distribution of a vaccine. \n \nFor further information regarding the COVID-19 Response Fund, please click the button below.");
             bDonate.setVisibility(View.VISIBLE);
-        } else if (value == "Q7"){
+        } else if (value == "Q7") {
             tvFAQ.setText("How can I provide feedback about this tracker?");
             tvAnswer.setText("We appreciate your use of our vaccine tracker! If you wish to provide us with any feedback in regards to the content, bugs, issues or any suggestions for improvement, please email us at vaccinetracker@DMTechnology.com. Any feedback is welcome!\n");
         }
-
-
-      /**  tvClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: closing dialog");
-                getDialog().dismiss();
-            }
-        });**/
 
         return view;
     }

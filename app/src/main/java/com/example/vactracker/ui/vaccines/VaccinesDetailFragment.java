@@ -43,15 +43,12 @@ public class VaccinesDetailFragment extends Fragment {
         mDb = Room.databaseBuilder(getContext(), AppDatabase.class, "app-database").allowMainThreadQueries().fallbackToDestructiveMigration()
                 .build();
 
-     }
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.vaccines_detail, container, false);
-
-
-
 
 
         Intent intent = getActivity().getIntent();
@@ -60,60 +57,56 @@ public class VaccinesDetailFragment extends Fragment {
         System.out.println(vaccineObject.getDeveloper());
 
         //populating fields
-        if(vaccineObject.getProductType() == null) {
+        if (vaccineObject.getProductType() == null) {
             ((TextView) root.findViewById(R.id.product_type)).setText("Unknown");
         } else {
             ((TextView) root.findViewById(R.id.product_type)).setText(vaccineObject.getProductType());
         }
 
-        if(vaccineObject.getDescription() == null) {
+        if (vaccineObject.getDescription() == null) {
             ((TextView) root.findViewById(R.id.description)).setText("Unknown");
         } else {
             ((TextView) root.findViewById(R.id.description)).setText(vaccineObject.getDescription());
         }
 
-        if(vaccineObject.getDeveloper() == null) {
+        if (vaccineObject.getDeveloper() == null) {
             ((TextView) root.findViewById(R.id.developer)).setText("Unknown");
         } else {
             ((TextView) root.findViewById(R.id.developer)).setText(vaccineObject.getDeveloper());
         }
 
 
-
-        if(vaccineObject.getOrigin() == null) {
+        if (vaccineObject.getOrigin() == null) {
             ((TextView) root.findViewById(R.id.origin)).setText("Unknown");
         } else {
             ((TextView) root.findViewById(R.id.origin)).setText(vaccineObject.getOrigin());
         }
 
-        if(vaccineObject.getFundingSources() == null) {
+        if (vaccineObject.getFundingSources() == null) {
             ((TextView) root.findViewById(R.id.funding_source)).setText("Unknown");
         } else {
             ((TextView) root.findViewById(R.id.funding_source)).setText(vaccineObject.getFundingSources());
         }
 
-        if(vaccineObject.getNextSteps() == null) {
+        if (vaccineObject.getNextSteps() == null) {
             ((TextView) root.findViewById(R.id.next_steps)).setText("Unknown");
         } else {
 
             ((TextView) root.findViewById(R.id.next_steps)).setText(vaccineObject.getNextSteps());
         }
 
-        if(vaccineObject.getStageOfDevelopment() == null) {
+        if (vaccineObject.getStageOfDevelopment() == null) {
             ((TextView) root.findViewById(R.id.next_steps2)).setText("Unknown");
         } else {
             ((TextView) root.findViewById(R.id.next_steps2)).setText(vaccineObject.getStageOfDevelopment());
         }
 
 
-        if(vaccineObject.getClinicalTrialsOtherDiseases() == null) {
+        if (vaccineObject.getClinicalTrialsOtherDiseases() == null) {
             ((TextView) root.findViewById(R.id.clinical_button)).setText("Unknown");
         } else {
             ((TextView) root.findViewById(R.id.clinical_button)).setText(vaccineObject.getClinicalTrialsOtherDiseases());
         }
-
-
-
 
 
         getActivity().setTitle(vaccineObject.getDeveloper());
@@ -122,8 +115,6 @@ public class VaccinesDetailFragment extends Fragment {
         Log.d(TAG, "onCreateView: Success 2");
         return root;
     }
-
-
 
 
     private class GetVaccineDBTask extends AsyncTask<String, Void, Obj> {
